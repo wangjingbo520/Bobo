@@ -1,29 +1,25 @@
 package com.zynet.bobo.mvp.model.impl;
 
-import com.zynet.bobo.bean.CurrencyBean;
+import com.zynet.bobo.base.OnLoadDatasListener;
+import com.zynet.bobo.bean.HomeBean;
 import com.zynet.bobo.mvp.http.BaseObserver;
 import com.zynet.bobo.mvp.http.RetrofitFactory;
-import com.zynet.bobo.mvp.model.IRegisterModel;
-import com.zynet.bobo.base.OnLoadDatasListener;
+import com.zynet.bobo.mvp.model.IHomeModel;
 
 /**
  * @author Bobo
  * @date 2019/9/22 0022
  * describe
  */
-public class RegisterModelImpl implements IRegisterModel {
-
-
+public class HomeModeImpl implements IHomeModel {
     @Override
-    public void handleRegister(String username, String password, String passwordagain, final OnLoadDatasListener<CurrencyBean.DataBean> onLoadDatasListener) {
-
+    public void getBannerData(OnLoadDatasListener<HomeBean.DataBean> onLoadDatasListener) {
         RetrofitFactory
                 .getInstence()
-                .register(username, password, passwordagain, new BaseObserver<CurrencyBean.DataBean>() {
+                .getHomeData(new BaseObserver<HomeBean.DataBean>() {
                     @Override
-                    protected void onSuccees(CurrencyBean.DataBean dataBean) throws Exception {
+                    protected void onSuccees(HomeBean.DataBean dataBean) throws Exception {
                         onLoadDatasListener.onSuccess(dataBean);
-
                     }
 
                     @Override

@@ -1,4 +1,4 @@
-package com.zynet.bobo.http;
+package com.zynet.bobo.mvp.http;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,12 +26,8 @@ import retrofit2.HttpException;
  * describe
  */
 public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
-
     private static final String tag = BaseObserver.class.getSimpleName();
-
-
     private Context mContext;
-
 
     //对应HTTP的状态码
     private static final int UNAU = 402;
@@ -52,22 +48,15 @@ public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
     private final String connectMsg = "连接服务器错误,请检查网络";
     private final String connectOutMsg = "连接服务器超时,请检查网络";
 
-
-
     protected BaseObserver(Context context) {
         this.mContext = context;
-
     }
     protected BaseObserver(){    }
 
     @Override
     public void onNext(BaseResponse<T> tBaseEntity) {
-
-
         if (tBaseEntity.isSuccess()) {
             try {
-
-
                 onSuccees(tBaseEntity.data);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -208,9 +197,6 @@ public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
             e1.printStackTrace();
         }
     }
-
-
-
 
     /**
      * 返回失败

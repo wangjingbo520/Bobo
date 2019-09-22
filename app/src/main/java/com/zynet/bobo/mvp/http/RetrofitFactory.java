@@ -1,12 +1,10 @@
-package com.zynet.bobo.http;
+package com.zynet.bobo.mvp.http;
 
 import com.zynet.bobo.bean.CurrencyBean;
-import com.zynet.bobo.model.BannerBean;
+import com.zynet.bobo.bean.HomeBean;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -54,9 +52,6 @@ public class RetrofitFactory {
 
     }
 
-
-
-
     public static RetrofitFactory getInstence() {
         if (mRetrofitFactory == null) {
             synchronized (RetrofitFactory.class) {
@@ -71,25 +66,26 @@ public class RetrofitFactory {
         return mApiService;
     }
 
-    public ObservableTransformer threadTransformer() {
-        return new ObservableTransformer() {
-            @Override
-            public ObservableSource apply(Observable observable) {
-                return observable
-                        .subscribeOn(Schedulers.io())
-                        .unsubscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread());
-            }
-        };
+    private ObservableTransformer threadTransformer() {
+        return observable -> observable
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public void register(String username, String  password,String repassword ,BaseObserver<CurrencyBean.DataBean> scheduler) {
+    public void register(String username, String password, String repassword, BaseObserver<CurrencyBean.DataBean> scheduler) {
         API()
-                .register(username,password,repassword)
+                .register(username, password, repassword)
                 .compose(threadTransformer())
                 .subscribe(scheduler);
     }
 
+    public void getHomeData(BaseObserver<HomeBean.DataBean> scheduler) {
+        API()
+                .getHomeData()
+                .compose(threadTransformer())
+                .subscribe(scheduler);
+    }
 
 //    public void getHomeList(int page, BaseObserver<MainListBean.DataBean> scheduler) {
 //        API()

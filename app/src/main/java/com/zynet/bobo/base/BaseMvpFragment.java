@@ -60,15 +60,6 @@ public abstract class BaseMvpFragment<V extends IBaseMvpView, P extends BaseMvpP
         return rootView;
     }
 
-    @Override
-    public Dialog getLoadDialog() {
-        return dialog;
-    }
-
-    @Override
-    public void cancelLoadDialog() {
-
-    }
 
     protected abstract P createPresenter();
 

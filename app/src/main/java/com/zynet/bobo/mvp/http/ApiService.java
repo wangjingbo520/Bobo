@@ -1,15 +1,15 @@
-package com.zynet.bobo.http;
+package com.zynet.bobo.mvp.http;
 
 import com.zynet.bobo.bean.CurrencyBean;
 import com.zynet.bobo.model.BannerBean;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * @author Bobo
@@ -28,6 +28,10 @@ public interface ApiService {
     @POST("user/register")
     Observable<BaseResponse<CurrencyBean.DataBean>> register(@Field("username") String username
             , @Field("password") String password, @Field("repassword") String repassword);
+
+
+    @GET("wxarticle/chapters/json")
+    Observable<BaseResponse<List<BannerBean>>> getHomeData();
 
 
 //    /***

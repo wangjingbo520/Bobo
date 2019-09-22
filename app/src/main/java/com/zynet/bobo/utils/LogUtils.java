@@ -21,7 +21,7 @@ import java.util.Locale;
  */
 public class LogUtils {
 
-    public static String customTagPrefix = "qinzishuai"; // 自定义Tag的前缀，可以是作者名
+    public static String customTagPrefix = "------->"; // 自定义Tag的前缀，可以是作者名
     private static final boolean isSaveLog = false; // 是否把保存日志到SD卡中
     public static final String ROOT = Environment.getExternalStorageDirectory()
             .getPath() + "/qinzishuai/"; // SD卡中的根目录

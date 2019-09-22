@@ -1,5 +1,6 @@
 package com.zynet.bobo.ui.fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import com.zynet.bobo.R;
@@ -40,6 +41,16 @@ public class MyFragment extends BaseMvpFragment {
 
     @Override
     public void initData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public Dialog getLoadDialog() {
+        return null;
+    }
+
+    @Override
+    public void cancelLoadDialog() {
 
     }
 }
