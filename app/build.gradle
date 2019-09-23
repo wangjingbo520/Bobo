@@ -61,4 +61,7 @@ dependencies {
     api rootProject.ext.dependencies["rxlifecycle"]
     api rootProject.ext.dependencies["rxlifecycle-components"]
     api rootProject.ext.dependencies["rxlifecycle-navi"]
+
+    //volley
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
 }
