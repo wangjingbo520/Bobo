@@ -6,7 +6,15 @@ package com.zynet.bobo.mvc.http;
  * describe
  */
 public interface ICallBack {
-    void onSucess(String result);
+    /**
+     * 成功的回调
+     *
+     * @param result
+     */
+    void onSuccess(String result);
 
+    /**
+     * 失败的回调
+     */
     void onFailure();
 }

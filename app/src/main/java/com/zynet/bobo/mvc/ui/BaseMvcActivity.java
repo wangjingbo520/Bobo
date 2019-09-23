@@ -1,12 +1,20 @@
-package com.zynet.bobo.mvc.http;
+package com.zynet.bobo.mvc.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import com.zynet.bobo.mvc.http.HttpCallBack;
+import com.zynet.bobo.mvc.http.HttpHelper;
+
 import java.util.Map;
 
+/**
+ * @author Bobo
+ * @date 2019/9/21
+ * describe
+ */
 public abstract class BaseMvcActivity<T> extends Activity {
 
     @Override

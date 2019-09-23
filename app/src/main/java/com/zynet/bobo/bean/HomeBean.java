@@ -142,4 +142,13 @@ public class HomeBean {
                     '}';
         }
     }
+
+    @Override
+    public String toString() {
+        return "HomeBean{" +
+                "errorCode=" + errorCode +
+                ", errorMsg='" + errorMsg + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

@@ -10,5 +10,5 @@ import java.util.Map;
 public interface IHttpProcessor {
     void post(String url, Map<String, Object> params, ICallBack callBack);
 
-    void get(String url);
+    void get(String url,ICallBack callBack);
 }

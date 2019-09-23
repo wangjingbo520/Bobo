@@ -96,17 +96,9 @@ public class SplashActivity extends BaseMvpActivity {
     void multiNeverAsk() {
         new AlertDialog.Builder(this)
                 .setMessage("您已经拒绝请求权限,请到设置页面打开权限")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startSetting(SplashActivity.this, getPackageName());
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        }).show();
+                .setPositiveButton("确定", (dialog, which) ->
+                        startSetting(SplashActivity.this, getPackageName()))
+                .setNegativeButton("取消", (dialog, which) -> finish()).show();
     }
 
     private void startSetting(Context context, String packageName) {

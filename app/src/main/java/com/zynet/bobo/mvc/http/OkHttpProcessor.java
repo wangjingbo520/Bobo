@@ -3,6 +3,8 @@ package com.zynet.bobo.mvc.http;
 import android.os.Handler;
 import android.util.Log;
 
+import com.zynet.bobo.utils.LogUtils;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -41,13 +43,12 @@ public class OkHttpProcessor implements IHttpProcessor {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    String str = response.body().string();
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            callBack.onSucess(str);
-                        }
-                    });
+                    if (response.body() == null) {
+                        return;
+                    }
+                    String result = response.body().string();
+                    LogUtils.e(result);
+                    mHandler.post(() -> callBack.onSuccess(result));
                 }
             }
         });
@@ -66,7 +67,7 @@ public class OkHttpProcessor implements IHttpProcessor {
     }
 
     @Override
-    public void get(String url) {
+    public void get(String url, ICallBack callBack) {
         Request request = new Request.Builder().url(url).get().build();
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -77,8 +78,13 @@ public class OkHttpProcessor implements IHttpProcessor {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
+                    if (response.body() == null) {
+                        return;
+                    }
                     String result = response.body().string();
-                    Log.i("------>", result);
+                    LogUtils.e(result);
+                    mHandler.post(() -> callBack.onSuccess(result));
+
                 }
 
             }

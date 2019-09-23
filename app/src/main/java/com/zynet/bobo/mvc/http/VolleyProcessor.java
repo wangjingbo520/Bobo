@@ -18,11 +18,12 @@ import java.util.Map;
  * describe  Volley请求
  */
 public class VolleyProcessor implements IHttpProcessor {
-
     private static RequestQueue mQueue = null;
-
     private static final int sTimeOut = 30000;
-    //是否使用Volley默认连接超时
+
+    /**
+     * 是否使用Volley默认连接超时
+     */
     private boolean timeOutDefaultFlg = false;
     private int myTimeOut = timeOutDefaultFlg ? DefaultRetryPolicy.DEFAULT_TIMEOUT_MS : sTimeOut;
 
@@ -37,9 +38,9 @@ public class VolleyProcessor implements IHttpProcessor {
             hashMap.put(enty.getKey(), enty.getValue().toString());
         }
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                callBack::onSucess, error -> callBack.onFailure()) {
+                callBack::onSuccess, error -> callBack.onFailure()) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 return hashMap;
             }
         };
@@ -51,7 +52,7 @@ public class VolleyProcessor implements IHttpProcessor {
     @Override
     public void get(String url, ICallBack callBack) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url
-                , callBack::onSucess, error -> callBack.onFailure());
+                , callBack::onSuccess, error -> callBack.onFailure());
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(myTimeOut,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mQueue.add(stringRequest);
