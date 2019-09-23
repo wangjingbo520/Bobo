@@ -31,9 +31,27 @@ public abstract class HttpCallBack<T> implements ICallBack {
     }
 
     private Class<?> analysisClassInfo(Object object) {
-        Type type = object.getClass().getGenericSuperclass();
-        Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
-        return (Class<?>) actualTypeArguments[0];
+        Type t = object.getClass().getGenericSuperclass();
+        Type type = ((ParameterizedType) t).getActualTypeArguments()[0];
+        if (type instanceof ParameterizedType) {
+            return parseParameterizedType(response, (ParameterizedType) type);
+        } else if (type instanceof Class) {
+            return parseClass(response, (Class<?>) type);
+        } else {
+            return parseType(response, type);
+        }
+      //  return (Class<?>) actualTypeArguments[0];
+    }
+
+
+     if (type == null) {
+        if (clazz == null) {
+            Type genType = getClass().getGenericSuperclass();
+            type = ((ParameterizedType) genType).getActualTypeArguments()[0];
+        } else {
+            JsonConvert<T> convert = new JsonConvert<>(clazz);
+            return convert.convertResponse(response);
+        }
     }
 
 
