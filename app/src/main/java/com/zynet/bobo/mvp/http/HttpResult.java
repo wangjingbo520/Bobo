@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvp;
+package com.zynet.bobo.mvp.http;
 
 /**
  * @author Bobo

@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvp;
+package com.zynet.bobo.mvp.http;
 
 import com.google.gson.JsonParseException;
 import com.zynet.bobo.utils.LogUtils;

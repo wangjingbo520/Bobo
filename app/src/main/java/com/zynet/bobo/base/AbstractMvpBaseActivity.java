@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.zynet.bobo.mvp.BaseContract;
+import com.zynet.bobo.R;
 import com.zynet.bobo.utils.DialogUtils;
 
 import butterknife.ButterKnife;
@@ -29,7 +30,7 @@ public abstract class AbstractMvpBaseActivity<T extends BaseContract.BasePresent
 
     Unbinder unbinder;
 
-    protected Dialog dialog;
+    protected Dialog mLoadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public abstract class AbstractMvpBaseActivity<T extends BaseContract.BasePresent
         attachView();
         initView(mRootView, savedInstanceState);
         initData();
-        dialog = DialogUtils.createLoadingDialog(this, "正在加载");
+        mLoadingDialog = DialogUtils.createLoadingDialog(this, "正在加载");
     }
 
     @Override
@@ -80,7 +81,16 @@ public abstract class AbstractMvpBaseActivity<T extends BaseContract.BasePresent
 
     @Override
     public void showLoading() {
+        if (mLoadingDialog != null)
+            mLoadingDialog.show();
+    }
 
+    protected void showLoadingDialog(String str) {
+        if (mLoadingDialog != null) {
+            TextView tv = (TextView) mLoadingDialog.findViewById(R.id.tv_load_dialog);
+            tv.setText(str);
+            mLoadingDialog.show();
+        }
     }
 
     @Override

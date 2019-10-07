@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvp;
+package com.zynet.bobo.mvp.http;
 
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

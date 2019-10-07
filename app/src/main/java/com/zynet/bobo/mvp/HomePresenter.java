@@ -1,6 +1,10 @@
 package com.zynet.bobo.mvp;
 
+import com.zynet.bobo.base.BasePresenter;
 import com.zynet.bobo.bean.BannerBean;
+import com.zynet.bobo.mvp.http.BaseObserver;
+import com.zynet.bobo.mvp.http.HttpResultFunc;
+import com.zynet.bobo.mvp.http.RxSchedulers;
 import com.zynet.bobo.utils.ToastUtil;
 
 import java.util.List;

@@ -1,6 +1,7 @@
 package com.zynet.bobo.mvp;
 
 
+import com.zynet.bobo.base.BaseContract;
 import com.zynet.bobo.bean.BannerBean;
 
 /**

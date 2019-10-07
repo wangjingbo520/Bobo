@@ -1,4 +1,6 @@
-package com.zynet.bobo.mvp;
+package com.zynet.bobo.base;
+
+import com.zynet.bobo.mvp.http.RequestClient;
 
 /**
  * @author Bobo

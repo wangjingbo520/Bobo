@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvp;
+package com.zynet.bobo.base;
 
 import com.trello.rxlifecycle2.LifecycleTransformer;
 

@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 
 import com.zynet.bobo.R;
 import com.zynet.bobo.base.AbstractMvpBaseActivity;
-import com.zynet.bobo.mvp.BaseContract;
+import com.zynet.bobo.base.BaseContract;
 
 public class RegisterActivity  extends AbstractMvpBaseActivity {
     private EditText etUsername;
