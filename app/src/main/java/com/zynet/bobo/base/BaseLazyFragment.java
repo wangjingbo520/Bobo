@@ -4,6 +4,7 @@ package com.zynet.bobo.base;
 import android.os.Bundle;
 
 import androidx.annotation.UiThread;
+import androidx.fragment.app.Fragment;
 
 
 /**
@@ -11,7 +12,7 @@ import androidx.annotation.UiThread;
  * @date 2019/9/21
  * describe 懒加载Fragment基类
  */
-public abstract class BaseLazyFragment extends BaseMvpFragment {
+public abstract class BaseLazyFragment extends Fragment {
 
     /**
      * 懒加载过

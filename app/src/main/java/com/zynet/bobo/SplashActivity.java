@@ -1,21 +1,18 @@
 package com.zynet.bobo;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.zynet.bobo.base.BaseMvpActivity;
-import com.zynet.bobo.base.BaseMvpPresenter;
+import com.zynet.bobo.mvc.ui.BaseMvcActivity;
 import com.zynet.bobo.utils.ToastUtil;
 
 import permissions.dispatcher.NeedsPermission;
@@ -33,31 +30,35 @@ import permissions.dispatcher.RuntimePermissions;
  */
 
 @RuntimePermissions
-public class SplashActivity extends BaseMvpActivity {
+public class SplashActivity extends BaseMvcActivity {
     private Handler mHandler;
     private CloseRunnable runnable;
 
+
     @Override
-    protected BaseMvpPresenter createPresenter() {
-        return null;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        initView();
     }
 
     @Override
-    public int getLayout() {
-        return R.layout.activity_splash;
+    public void onNetSuccess(String url, String obj) {
+
     }
 
     @Override
+    public void initHttpType() {
+
+    }
+
+
     public void initView() {
         mHandler = new Handler(getMainLooper());
         runnable = new CloseRunnable();
         SplashActivityPermissionsDispatcher.getMultiWithPermissionCheck(this);
     }
 
-    @Override
-    public void initData(Bundle savedInstanceState) {
-
-    }
 
     @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission
@@ -120,7 +121,8 @@ public class SplashActivity extends BaseMvpActivity {
 
         @Override
         public void run() {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            // startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            startActivity(new Intent(SplashActivity.this, TestActivityAbstruct.class));
             finish();
         }
     }

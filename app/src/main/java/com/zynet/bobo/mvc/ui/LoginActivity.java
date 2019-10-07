@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.zynet.bobo.R;
-import com.zynet.bobo.bean.HomeBean;
 import com.zynet.bobo.mvc.http.HttpHelper;
 import com.zynet.bobo.mvc.http.VolleyProcessor;
 
@@ -17,7 +16,7 @@ import butterknife.ButterKnife;
  * @date 2019/9/21
  * describe
  */
-public class LoginActivity extends BaseMvcActivity<HomeBean> {
+public class LoginActivity extends BaseMvcActivity {
 
     String url = "https://wanandroid.com/wxarticle/chapters/json";
     @BindView(R.id.tvConent)
@@ -32,9 +31,8 @@ public class LoginActivity extends BaseMvcActivity<HomeBean> {
     }
 
     @Override
-    public void onNetSuccess(String url, HomeBean obj) {
-        tvConent.setText(obj.toString());
-
+    public void onNetSuccess(String url, String obj) {
+        tvConent.setText(obj);
     }
 
 

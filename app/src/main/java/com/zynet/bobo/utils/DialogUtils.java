@@ -33,7 +33,7 @@ public class DialogUtils {
          * 得到加载view
          */
         View v = inflater.inflate(R.layout.loading_dialog, null);
-        TextView tipTextView =  v.findViewById(R.id.tipTextView);// 提示文字
+        TextView tipTextView =  v.findViewById(R.id.tv_load_dialog);// 提示文字
         if (msg != null && !msg.equals("")) {
             tipTextView.setText(msg);// 设置加载信息
         }

@@ -20,28 +20,40 @@ import java.util.Locale;
  * describe
  */
 public class LogUtils {
+    /**
+     * 自定义Tag的前缀，可以是作者名
+     */
+    private static String customTagPrefix = "------->";
 
-    public static String customTagPrefix = "------->"; // 自定义Tag的前缀，可以是作者名
-    private static final boolean isSaveLog = false; // 是否把保存日志到SD卡中
-    public static final String ROOT = Environment.getExternalStorageDirectory()
-            .getPath() + "/qinzishuai/"; // SD卡中的根目录
+    /**
+     * 是否把保存日志到SD卡中
+     */
+    private static final boolean isSaveLog = false;
+
+    private static final String ROOT = Environment.getExternalStorageDirectory()
+            .getPath() + "/bobo/"; // SD卡中的根目录
     private static final String PATH_LOG_INFO = ROOT + "info/";
 
     private LogUtils() {
 
     }
-    // 容许打印日志的类型，默认是true，设置为false则不打印
-    public static boolean allowD = false;
-    public static boolean allowE = false;
-    public static boolean allowI = false;
-    public static boolean allowV = false;
-    public static boolean allowW = false;
-    public static boolean allowWtf = false;
+
+    /**
+     * 容许打印日志的类型，默认是true，设置为false则不打印
+     */
+    private static boolean allowD = false;
+    private static boolean allowE = false;
+    private static boolean allowI = false;
+    private static boolean allowV = false;
+    private static boolean allowW = false;
+    private static boolean allowWtf = false;
 
 
     private static String generateTag(StackTraceElement caller) {
-        String tag = "%s.%s(Line:%d)"; // 占位符
-        String callerClazzName = caller.getClassName(); // 获取到类名
+        // 占位符
+        String tag = "%s.%s(Line:%d)";
+        // 获取到类名
+        String callerClazzName = caller.getClassName();
         callerClazzName = callerClazzName.substring(callerClazzName
                 .lastIndexOf(".") + 1);
         tag = String.format(tag, callerClazzName, caller.getMethodName(),

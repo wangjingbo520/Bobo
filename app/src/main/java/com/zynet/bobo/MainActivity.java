@@ -5,12 +5,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.zynet.bobo.base.BaseMvpActivity;
-import com.zynet.bobo.base.BaseMvpPresenter;
 import com.zynet.bobo.ui.fragment.AboutFragment;
 import com.zynet.bobo.ui.fragment.HomeFragment;
 import com.zynet.bobo.ui.fragment.MyFragment;
@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * @date 2019/9/21
  * describe
  */
-public class MainActivity extends BaseMvpActivity {
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.tvTitle)
     TitleView tvTitle;
@@ -43,19 +43,20 @@ public class MainActivity extends BaseMvpActivity {
 
     private List<Fragment> mFragments = new ArrayList<>();
 
-
     @Override
-    public int getLayout() {
-        return R.layout.activity_main;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
     }
 
-    @Override
+
     public void initView() {
         tvTitle.setTitle("首页");
         tvTitle.setBackImageGone(true);
-        mFragments.add(HomeFragment.newInstance());
-        mFragments.add(AboutFragment.newInstance());
-        mFragments.add(MyFragment.newInstance());
+        mFragments.add(new HomeFragment());
+        mFragments.add(new AboutFragment());
+        mFragments.add(new MyFragment());
         //viewPager.setUserInputEnabled(false);
         viewPager.setCurrentItem(0);
         viewPager.setAdapter(new FragmentStateAdapter(this) {
@@ -89,10 +90,6 @@ public class MainActivity extends BaseMvpActivity {
         });
     }
 
-    @Override
-    public void initData(Bundle savedInstanceState) {
-
-    }
 
     @OnClick({R.id.tv1, R.id.tv2, R.id.tv3})
     public void onViewClicked(View view) {
@@ -111,8 +108,5 @@ public class MainActivity extends BaseMvpActivity {
         }
     }
 
-    @Override
-    protected BaseMvpPresenter createPresenter() {
-        return null;
-    }
+
 }

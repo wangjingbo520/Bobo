@@ -1,15 +1,11 @@
-package com.zynet.bobo.mvc.http;
-
-import java.io.Serializable;
+package com.zynet.bobo.mvp;
 
 /**
  * @author Bobo
- * @date 2019/9/23 0023
+ * @date 2019/10/7 0007
  * describe
  */
-public class LzyResponse<T> implements Serializable {
-
-    private static final long serialVersionUID = 5213230387175987834L;
+public class HttpResult<T> {
 
     public int errorCode;
     public String errorMsg;
@@ -17,10 +13,12 @@ public class LzyResponse<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "OnResponse{" +
+        return "HttpResult{" +
                 "errorCode=" + errorCode +
                 ", errorMsg='" + errorMsg + '\'' +
                 ", data=" + data +
                 '}';
     }
+
+
 }
