@@ -24,7 +24,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
         mRequestClient.getNewsDetail()
                 .compose(RxSchedulers.applySchedulers())
                 .map(new HttpResultFunc<>())
-                //   .compose(mView.bindToLife())
+                .compose(mView.bindToLife())
                 .subscribe(new BaseObserver<List<BannerBean>>() {
                     @Override
                     public void onSuccess(List<BannerBean> bannerBean) {

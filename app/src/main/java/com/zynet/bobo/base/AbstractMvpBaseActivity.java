@@ -22,11 +22,11 @@ import butterknife.Unbinder;
  * @date 2019/10/7 0007
  * describe
  */
-public abstract class AbstractMvpBaseActivity<T extends BaseContract.BasePresenter> extends RxAppCompatActivity
+public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresenter> extends RxAppCompatActivity
         implements BaseContract.BaseView, IBase {
     protected View mRootView;
 
-    protected T mPresenter;
+    protected T1 mPresenter;
 
     Unbinder unbinder;
 
@@ -76,7 +76,7 @@ public abstract class AbstractMvpBaseActivity<T extends BaseContract.BasePresent
     }
 
 
-    protected abstract T createPresenter();
+    protected abstract T1 createPresenter();
 
 
     @Override
@@ -115,7 +115,7 @@ public abstract class AbstractMvpBaseActivity<T extends BaseContract.BasePresent
 
     @Override
     public <T> LifecycleTransformer<T> bindToLife() {
-        return this.<T>bindToLifecycle();
+        return this.bindToLifecycle();
     }
 
 
