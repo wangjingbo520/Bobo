@@ -16,7 +16,7 @@ public class HttpResultFunc<T> implements Function<HttpResult<T>, T> {
         if (0 != tHttpResult.errorCode) {
             Log.i("------>", "请求发生异常了");
             //非正常返回结构处理
-            throw new ApiException(tHttpResult.errorMsg + "", tHttpResult.errorMsg);
+            throw new ApiException(tHttpResult.errorCode + "", tHttpResult.errorMsg);
         }
         return tHttpResult.data;
     }
