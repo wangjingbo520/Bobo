@@ -57,6 +57,7 @@ public class RetrofitConfig {
                 return originalResponse.newBuilder()
                         .header("Cache-Control", cacheControl)
                         .removeHeader("Pragma")
+
                         .build();
             } else {
                 return originalResponse.newBuilder()

@@ -11,7 +11,7 @@ import butterknife.OnClick;
  * @date 2019/9/21
  * describe 测试使用的
  */
-public class TestActivityAbstruct extends AbstractMvpBaseActivity<HomePresenter> {
+public class TestActivity extends AbstractMvpBaseActivity<HomePresenter> {
 
     @OnClick(R.id.btn)
     public void onViewClicked() {

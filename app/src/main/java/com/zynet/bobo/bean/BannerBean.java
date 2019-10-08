@@ -93,4 +93,19 @@ public class BannerBean {
     public void setChildren(List<?> children) {
         this.children = children;
     }
+
+
+    @Override
+    public String toString() {
+        return "BannerBean{" +
+                "courseId=" + courseId +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", order=" + order +
+                ", parentChapterId=" + parentChapterId +
+                ", userControlSetTop=" + userControlSetTop +
+                ", visible=" + visible +
+                ", children=" + children +
+                '}';
+    }
 }

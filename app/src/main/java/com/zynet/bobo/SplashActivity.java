@@ -122,7 +122,7 @@ public class SplashActivity extends BaseMvcActivity {
         @Override
         public void run() {
             // startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            startActivity(new Intent(SplashActivity.this, TestActivityAbstruct.class));
+            startActivity(new Intent(SplashActivity.this, TestActivity.class));
             finish();
         }
     }

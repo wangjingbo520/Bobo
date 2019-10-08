@@ -1,5 +1,6 @@
 package com.zynet.bobo.base;
 
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.zynet.bobo.mvp.http.RequestClient;
 
 /**
@@ -13,7 +14,7 @@ public class BasePresenter<T extends BaseContract.BaseView> implements BaseContr
      */
     protected RequestClient mRequestClient;
 
-    public BasePresenter(){
+    public BasePresenter() {
         mRequestClient = RequestClient.getInstance();
     }
 

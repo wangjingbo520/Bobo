@@ -21,6 +21,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RequestClient {
 
+    private final static String BASE_URL = "https://www.wanandroid.com/";
+
     private static RequestClient requestClient;
 
     private ApiService apiService;
@@ -33,7 +35,6 @@ public class RequestClient {
     }
 
 
-    String BASE_URL = "https://www.wanandroid.com/";
     private RequestClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         Cache cache = new Cache(new File(MyApplication.getContext().getCacheDir(), "HttpCache"),
@@ -55,8 +56,10 @@ public class RequestClient {
     }
 
 
-    public Observable<HttpResult<List<BannerBean>>> getNewsDetail() {
-        return apiService.getHomeData();
+    public Observable<List<BannerBean>> getNewsDetail() {
+        return apiService.getHomeData()
+                .map(new HttpResultFunc<>())
+                .compose(RxSchedulers.switchSchedulers());
     }
 
 

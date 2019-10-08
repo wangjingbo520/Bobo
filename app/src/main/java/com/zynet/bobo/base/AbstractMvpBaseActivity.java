@@ -19,11 +19,11 @@ import butterknife.Unbinder;
 
 /**
  * @author Bobo
- * @date 2019/10/7 0007
+ * @date 2019/10/7
  * describe
  */
 public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresenter> extends RxAppCompatActivity
-        implements BaseContract.BaseView, IBase {
+        implements IBase, BaseContract.BaseView {
     protected View mRootView;
 
     protected T1 mPresenter;
@@ -43,6 +43,7 @@ public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresen
         attachView();
         initView(mRootView, savedInstanceState);
         initData();
+
         mLoadingDialog = DialogUtils.createLoadingDialog(this, "正在加载");
     }
 
@@ -115,7 +116,8 @@ public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresen
 
     @Override
     public <T> LifecycleTransformer<T> bindToLife() {
-        return this.bindToLifecycle();
+      //  return bindUntilEvent(ActivityEvent.DESTROY);
+        return this.<T>bindToLifecycle();
     }
 
 
