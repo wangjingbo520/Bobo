@@ -28,11 +28,8 @@ public class TitleView extends FrameLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.base_title, this);
         fl_back = view.findViewById(R.id.fl_back);
         tvTitle = view.findViewById(R.id.tv_title);
-        fl_back.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        fl_back.setOnClickListener(v -> {
 
-            }
         });
     }
 

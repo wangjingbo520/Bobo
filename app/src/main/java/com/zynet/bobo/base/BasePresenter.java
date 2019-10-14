@@ -1,7 +1,6 @@
 package com.zynet.bobo.base;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.zynet.bobo.mvp.IBaseView;
 import com.zynet.bobo.mvp.http.RequestClient;
 
 /**
@@ -23,10 +22,6 @@ public class BasePresenter<T extends IBaseView> {
         mRequestClient = RequestClient.getInstance();
         this.mContext = rxAppCompatActivity;
         this.mView = (T) iBaseView;
-    }
-
-    protected void attachView(T view) {
-        this.mView = view;
     }
 
     protected void detachView() {

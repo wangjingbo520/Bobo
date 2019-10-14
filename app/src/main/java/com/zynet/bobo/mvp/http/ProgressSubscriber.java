@@ -68,10 +68,6 @@ public abstract class ProgressSubscriber<T> implements Observer<T>, ProgressDial
         }
     }
 
-    @Override
-    public void onNext(T t) {
-        onSuccess(t);
-    }
 
     @Override
     public void onError(@NonNull Throwable e) {
@@ -145,8 +141,6 @@ public abstract class ProgressSubscriber<T> implements Observer<T>, ProgressDial
     public void onFinish() {
         //根据具体业务场景重写该方法以实现自己的需求
     }
-
-    public abstract void onSuccess(T t);
 
 
 }

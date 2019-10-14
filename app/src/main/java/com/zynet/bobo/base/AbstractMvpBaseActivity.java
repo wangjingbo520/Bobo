@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
-import com.zynet.bobo.mvp.IBaseView;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -24,7 +22,7 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
     protected T1 mPresenter;
 
     Unbinder unbinder;
-    
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +31,9 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
         if (mPresenter == null) {
             mPresenter = createPresenter();
         }
-        attachView();
         initView(mRootView, savedInstanceState);
         initData();
-       
+
     }
 
     @Override
@@ -64,17 +61,12 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
 
     protected abstract T1 createPresenter();
 
-    
+
     @Override
     public void showFaild() {
-        
+
     }
 
-    private void attachView() {
-        if (mPresenter != null) {
-            mPresenter.attachView(this);
-        }
-    }
 
     @Override
     public void showNoNet() {
