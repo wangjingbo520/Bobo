@@ -41,6 +41,7 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
         if (mPresenter == null) {
             mPresenter = createPresenter();
         }
+        attachView();
         initView(mRootView, savedInstanceState);
         initData();
         mLoadingDialog = DialogUtils.createLoadingDialog(this, "正在加载");
@@ -93,7 +94,17 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
 
     @Override
     public void showFaild() {
+        if (mLoadingDialog != null) {
+            if (mLoadingDialog.isShowing()) {
+                mLoadingDialog.dismiss();
+            }
+        }
+    }
 
+    private void attachView() {
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
     }
 
     @Override
@@ -105,12 +116,6 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
     public void onRetry() {
 
     }
-
-//    @Override
-//    public <T> LifecycleTransformer<T> bindToLife() {
-//        return this.bindToLifecycle();
-//    }
-
 
     @Override
     protected void onDestroy() {
