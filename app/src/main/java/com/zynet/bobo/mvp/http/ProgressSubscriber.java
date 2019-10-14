@@ -59,11 +59,8 @@ public abstract class ProgressSubscriber<T> implements Observer<T>, ProgressDial
 
     @Override
     public void onSubscribe(Disposable d) {
-        if (NetUtil.isNetworkAvailable(context)) {
+        if (!NetUtil.isNetworkAvailable(context)) {
             ToastUtil.showMessage(connectMsg);
-            if (d.isDisposed()) {
-                d.dispose();
-            }
             return;
         }
         if (showDialog) {
