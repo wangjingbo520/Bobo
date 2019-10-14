@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.zynet.bobo.R;
+import com.zynet.bobo.mvp.IBaseView;
 import com.zynet.bobo.utils.DialogUtils;
 
 import butterknife.ButterKnife;
@@ -19,11 +20,11 @@ import butterknife.Unbinder;
 
 /**
  * @author Bobo
- * @date 2019/10/7
+ * @date 2019/10/7 0007
  * describe
  */
-public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresenter> extends RxAppCompatActivity
-        implements IBase, BaseContract.BaseView {
+public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends BaseActivity
+        implements IBaseView, IBase {
     protected View mRootView;
 
     protected T1 mPresenter;
@@ -40,10 +41,8 @@ public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresen
         if (mPresenter == null) {
             mPresenter = createPresenter();
         }
-        attachView();
         initView(mRootView, savedInstanceState);
         initData();
-
         mLoadingDialog = DialogUtils.createLoadingDialog(this, "正在加载");
     }
 
@@ -67,13 +66,6 @@ public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresen
         View view = getLayoutInflater().inflate(getContentLayout(), container);
         unbinder = ButterKnife.bind(this, view);
         return view;
-    }
-
-
-    private void attachView() {
-        if (mPresenter != null) {
-            mPresenter.attachView(this);
-        }
     }
 
 
@@ -114,11 +106,10 @@ public abstract class AbstractMvpBaseActivity<T1 extends BaseContract.BasePresen
 
     }
 
-    @Override
-    public <T> LifecycleTransformer<T> bindToLife() {
-      //  return bindUntilEvent(ActivityEvent.DESTROY);
-        return this.<T>bindToLifecycle();
-    }
+//    @Override
+//    public <T> LifecycleTransformer<T> bindToLife() {
+//        return this.bindToLifecycle();
+//    }
 
 
     @Override
