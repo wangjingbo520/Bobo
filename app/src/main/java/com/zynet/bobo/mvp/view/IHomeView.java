@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvp;
+package com.zynet.bobo.mvp.view;
 
 import com.zynet.bobo.base.IBaseView;
 import com.zynet.bobo.bean.BannerBean;

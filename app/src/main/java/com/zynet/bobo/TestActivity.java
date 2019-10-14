@@ -4,8 +4,8 @@ import android.widget.TextView;
 
 import com.zynet.bobo.base.AbstractMvpBaseActivity;
 import com.zynet.bobo.bean.BannerBean;
-import com.zynet.bobo.mvp.HomePresenter;
-import com.zynet.bobo.mvp.IHomeView;
+import com.zynet.bobo.mvp.presenter.HomePresenter;
+import com.zynet.bobo.mvp.view.IHomeView;
 import com.zynet.bobo.utils.ToastUtil;
 
 import java.util.List;
@@ -52,7 +52,6 @@ public class TestActivity extends AbstractMvpBaseActivity<HomePresenter> impleme
                 size++;
                 tvContent.setText("总共有" + total +
                         "条数据" + "/n" + "当前是第" + size + "条数据:" + bannerBean.get(size - 1).toString());
-
             } else {
                 ToastUtil.showMessage("数据已经到顶了");
             }

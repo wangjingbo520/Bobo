@@ -1,8 +1,9 @@
-package com.zynet.bobo.mvp;
+package com.zynet.bobo.mvp.presenter;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.zynet.bobo.base.BasePresenter;
 import com.zynet.bobo.bean.BannerBean;
+import com.zynet.bobo.mvp.view.IHomeView;
 import com.zynet.bobo.mvp.http.ProgressSubscriber;
 
 import java.util.List;
