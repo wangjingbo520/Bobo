@@ -31,7 +31,7 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
 
     Unbinder unbinder;
 
-    protected Dialog mLoadingDialog;
+    private Dialog mLoadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
