@@ -1,19 +1,13 @@
 package com.zynet.bobo.base;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.zynet.bobo.R;
 import com.zynet.bobo.mvp.IBaseView;
-import com.zynet.bobo.utils.DialogUtils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -30,9 +24,7 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
     protected T1 mPresenter;
 
     Unbinder unbinder;
-
-    private Dialog mLoadingDialog;
-
+    
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +36,7 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
         attachView();
         initView(mRootView, savedInstanceState);
         initData();
-        mLoadingDialog = DialogUtils.createLoadingDialog(this, "正在加载");
+       
     }
 
     @Override
@@ -72,33 +64,10 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
 
     protected abstract T1 createPresenter();
 
-
-    @Override
-    public void showLoading() {
-        if (mLoadingDialog != null)
-            mLoadingDialog.show();
-    }
-
-    protected void showLoadingDialog(String str) {
-        if (mLoadingDialog != null) {
-            TextView tv = (TextView) mLoadingDialog.findViewById(R.id.tv_load_dialog);
-            tv.setText(str);
-            mLoadingDialog.show();
-        }
-    }
-
-    @Override
-    public void showSuccess() {
-
-    }
-
+    
     @Override
     public void showFaild() {
-        if (mLoadingDialog != null) {
-            if (mLoadingDialog.isShowing()) {
-                mLoadingDialog.dismiss();
-            }
-        }
+        
     }
 
     private void attachView() {
