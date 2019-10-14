@@ -1,11 +1,16 @@
 package com.zynet.bobo.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zynet.bobo.R;
 
+/**
+ * @author Bobo
+ * @date 2019/9/21
+ * describe
+ */
 public class LoginActivity extends AppCompatActivity {
 
     @Override
