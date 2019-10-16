@@ -2,7 +2,6 @@ package com.zynet.bobo.mvc.ui;
 
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -10,6 +9,7 @@ import com.zynet.bobo.R;
 import com.zynet.bobo.constant.Config;
 import com.zynet.bobo.constant.InterfaceMethod;
 import com.zynet.bobo.mvc.volley.network.RequestHandler;
+import com.zynet.bobo.utils.LogUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class LoginActivity extends BaseMvcActivity {
     }
 
     private void test() {
-        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = new HashMap<>(16);
         RequestHandler.addRequestWithDialog(Request.Method.GET, this, mHandler, RESULT_GET_IP_INFO, null, Config.BASE_URL + InterfaceMethod.MAIN, params, null);
     }
 
@@ -49,7 +49,7 @@ public class LoginActivity extends BaseMvcActivity {
         switch (msg.what) {
             case RESULT_GET_IP_INFO:
                 String result = (String) msg.obj;
-                Log.d("demo", result);
+                LogUtil.d(result);
                 tvContent.setText(result);
 //                IpInfo ipInfo = JSON.parseObject(result, IpInfo.class);
 //                setIpInfoToView(ipInfo);
