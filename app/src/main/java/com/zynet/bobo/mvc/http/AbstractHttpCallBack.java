@@ -19,8 +19,8 @@ public abstract class AbstractHttpCallBack<Result> implements ICallBack {
     @Override
     public void onSuccess(String result) {
         ToastUtil.showMessage("执行成功了");
-        Result data = parseJson(result).getData();
-        onSuccess(data);
+//        Result data = parseJson(result).getData();
+//        onSuccess(data);
     }
 
     private OnResponse<Result> parseJson(String jsonStr) {
@@ -31,9 +31,7 @@ public abstract class AbstractHttpCallBack<Result> implements ICallBack {
     }
 
     @Override
-    public void onFailure(Exception e) {
-        ToastUtil.showMessage("发生异常了" + e.getMessage());
+    public void onFailure() {
+
     }
-
-
 }

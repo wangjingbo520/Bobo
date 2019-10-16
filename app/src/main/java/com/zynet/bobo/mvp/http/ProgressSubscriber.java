@@ -3,7 +3,7 @@ package com.zynet.bobo.mvp.http;
 import android.content.Context;
 
 import com.google.gson.JsonParseException;
-import com.zynet.bobo.utils.LogUtils;
+import com.zynet.bobo.utils.LogUtil;
 import com.zynet.bobo.utils.NetUtil;
 import com.zynet.bobo.utils.ToastUtil;
 
@@ -16,6 +16,7 @@ import java.net.SocketTimeoutException;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import me.jessyan.autosize.utils.LogUtils;
 import retrofit2.HttpException;
 
 public abstract class ProgressSubscriber<T> implements Observer<T>, ProgressDialogListener {
@@ -100,7 +101,7 @@ public abstract class ProgressSubscriber<T> implements Observer<T>, ProgressDial
             }
         } else if (e instanceof JsonParseException
                 || e instanceof JSONException) {
-            LogUtils.e("JsonParseException JSONException");
+            LogUtil.e("JsonParseException JSONException");
             error = parseMsg;
         } else if (e instanceof IOException) {
             LogUtils.e("IOException");

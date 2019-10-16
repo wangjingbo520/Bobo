@@ -1,13 +1,11 @@
 package com.zynet.bobo.mvc.http;
 
 import android.os.Handler;
-import android.util.Log;
-
-import com.zynet.bobo.utils.LogUtils;
 
 import java.io.IOException;
 import java.util.Map;
 
+import me.jessyan.autosize.utils.LogUtils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -52,7 +50,6 @@ public class OkHttpProcessor implements IHttpProcessor {
                 }
             }
         });
-
     }
 
     private RequestBody appenBody(Map<String, Object> params) {

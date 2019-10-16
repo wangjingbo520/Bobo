@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.zynet.bobo.mvc.ui.BaseMvcActivity;
+import com.zynet.bobo.base.BaseActivity;
+import com.zynet.bobo.mvc.ui.LoginActivity;
 import com.zynet.bobo.utils.ToastUtil;
 
 import permissions.dispatcher.NeedsPermission;
@@ -30,7 +31,7 @@ import permissions.dispatcher.RuntimePermissions;
  */
 
 @RuntimePermissions
-public class SplashActivity extends BaseMvcActivity {
+public class SplashActivity extends BaseActivity {
     private Handler mHandler;
     private CloseRunnable runnable;
 
@@ -40,16 +41,6 @@ public class SplashActivity extends BaseMvcActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         initView();
-    }
-
-    @Override
-    public void onNetSuccess(String url, String obj) {
-
-    }
-
-    @Override
-    public void initHttpType() {
-
     }
 
 
@@ -122,7 +113,8 @@ public class SplashActivity extends BaseMvcActivity {
         @Override
         public void run() {
             // startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            startActivity(new Intent(SplashActivity.this, TestActivity.class));
+           // startActivity(new Intent(SplashActivity.this, TestActivity.class));
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             finish();
         }
     }
