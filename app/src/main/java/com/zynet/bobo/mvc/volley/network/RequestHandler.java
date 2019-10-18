@@ -139,11 +139,15 @@ public class RequestHandler {
                     NetworkError.error("" + code, json, bundle);
                     return;
                 }
+//                JSONObject data = json.getJSONObject("data");
+//                JSON.parseObject("", )
             }
+
         } catch (Exception e) {
             e.printStackTrace();
 
         }
+
         Message msg = handler.obtainMessage(what, response);
         msg.setData(bundle);
         handler.sendMessage(msg);
