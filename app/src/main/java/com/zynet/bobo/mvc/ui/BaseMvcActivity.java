@@ -33,7 +33,7 @@ public class BaseMvcActivity extends BaseActivity implements IHandleMessage, IBa
     private static final String TAG = "------->";
     public MyVolleyHandler<BaseMvcActivity> mHandler;
 
-    private SimpleMultiStateView mSimpleMultiStateView;
+    public SimpleMultiStateView mSimpleMultiStateView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,20 +73,19 @@ public class BaseMvcActivity extends BaseActivity implements IHandleMessage, IBa
     /**
      * post 请求
      *
-     * @param interfaceMethod    接口名
-     * @param RESULT_GET_IP_INFO 接口标识符
-     * @param params             提交的内容
+     * @param interfaceMethod 接口名
+     * @param code            接口标识符
+     * @param params          提交的内容
      */
-    public void addPostRequest(String interfaceMethod, int RESULT_GET_IP_INFO, Map<String, String> params) {
-        RequestHandler.addRequest(Request.Method.POST, this, mHandler, RESULT_GET_IP_INFO, null, interfaceMethod, params, null, true);
+    public void addPostRequest(String interfaceMethod, int code, Map<String, String> params) {
+        RequestHandler.addRequest(Request.Method.POST, this, mHandler, code, null, interfaceMethod, params, null, true);
     }
 
-
-    public void initStateView() {
-        if (mSimpleMultiStateView == null) return;
+    public void initStateView(SimpleMultiStateView simpleMultiStateView) {
+        this.mSimpleMultiStateView = simpleMultiStateView;
         mSimpleMultiStateView.setEmptyResource(R.layout.view_empty)
                 .setRetryResource(R.layout.view_retry)
-                //  .setLoadingResource(R.layout.view_loading)
+                .setLoadingResource(R.layout.loading_dialog)
                 .setNoNetResource(R.layout.view_nonet)
                 .build()
                 .setonReLoadlistener(new MultiStateView.onReLoadlistener() {
@@ -97,16 +96,15 @@ public class BaseMvcActivity extends BaseActivity implements IHandleMessage, IBa
                 });
     }
 
-
-    //加载失败
     @Override
     public void showFaild() {
         if (mSimpleMultiStateView != null) {
             mSimpleMultiStateView.showErrorView();
+
+            mSimpleMultiStateView.showLoadingView();
         }
     }
 
-    //没网络连接
     @Override
     public void showNoNet() {
         if (mSimpleMultiStateView != null) {
@@ -114,16 +112,23 @@ public class BaseMvcActivity extends BaseActivity implements IHandleMessage, IBa
         }
     }
 
-    //重试
     @Override
     public void onRetry() {
 
     }
 
 
-    //没有数据
     @Override
     public void showEmptyView() {
+        if (mSimpleMultiStateView != null) {
+            mSimpleMultiStateView.showEmptyView();
+        }
+    }
 
+    @Override
+    public void showContent() {
+        if (mSimpleMultiStateView != null) {
+            mSimpleMultiStateView.showContent();
+        }
     }
 }

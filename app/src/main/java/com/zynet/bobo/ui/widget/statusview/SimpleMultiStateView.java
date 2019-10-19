@@ -143,7 +143,6 @@ public class SimpleMultiStateView extends MultiStateView {
      * 显示内容
      */
     public void showContent() {
-
         this.postDelayed(new Runnable() {
             @Override
             public void run() {

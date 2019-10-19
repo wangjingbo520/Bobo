@@ -96,6 +96,12 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
 
     }
 
+
+    @Override
+    public void showContent() {
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

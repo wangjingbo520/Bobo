@@ -3,15 +3,21 @@ package com.zynet.bobo;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
 import com.zynet.bobo.constant.MyConfig;
 import com.zynet.bobo.mvc.http.okhttp.CallBackUtil;
 import com.zynet.bobo.mvc.http.okhttp.OkhttpUtil;
 import com.zynet.bobo.mvc.ui.BaseMvcActivity;
-import com.zynet.bobo.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,12 +35,15 @@ public class MvcTestActivity extends BaseMvcActivity {
     RecyclerView recyclerView;
 
     private static final int RESULT_GET_IP_INFO = 101;
+    @BindView(R.id.SimpleMultiStateView)
+    com.zynet.bobo.ui.widget.statusview.SimpleMultiStateView SimpleMultiStateView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvctest);
         ButterKnife.bind(this);
+        initStateView(SimpleMultiStateView);
         //   volleyHttpTest();
         okHttpTest();
     }
@@ -48,10 +57,12 @@ public class MvcTestActivity extends BaseMvcActivity {
 
             @Override
             public void onResponse(String response) {
-                ToastUtil.showMessage("Success");
-                Log.d("kwwl", response);
+                showContent();
+                Log.i("--->", response);
+                recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+                recyclerView.setAdapter(new MyAdapter(new Gson().fromJson(response, TestBean.class)));
             }
-        }, true);
+        }, false);
     }
 
     private void volleyHttpTest() {
@@ -67,6 +78,42 @@ public class MvcTestActivity extends BaseMvcActivity {
                 break;
             default:
                 break;
+        }
+    }
+
+
+    class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
+        private TestBean testBean;
+
+        public MyAdapter(TestBean testBean) {
+            this.testBean = testBean;
+        }
+
+
+        @Override
+        public MyAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.recy_item, parent, false);
+            return new MyHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(MyHolder holder, int position) {
+            holder.tvContent.setText(testBean.getData().get(position).toString());
+        }
+
+        @Override
+        public int getItemCount() {
+            return testBean.getData().size();
+        }
+
+        class MyHolder extends RecyclerView.ViewHolder {
+
+            TextView tvContent;
+
+            private MyHolder(View itemView) {
+                super(itemView);
+                tvContent = itemView.findViewById(R.id.tvContent);
+            }
         }
     }
 

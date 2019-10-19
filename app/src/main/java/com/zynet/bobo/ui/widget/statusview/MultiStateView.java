@@ -105,7 +105,7 @@ public class MultiStateView extends FrameLayout {
                             public void onClick(View v) {
                                 if (mOnReLoadlistener != null) {
                                     mOnReLoadlistener.onReload();
-                                    setViewState(STATE_LOADING);
+                                 //   setViewState(STATE_LOADING);
                                 }
                             }
                         });

@@ -26,4 +26,7 @@ public interface IBaseView {
      * 没有数据
      */
     void showEmptyView();
+
+
+    void showContent();
 }
