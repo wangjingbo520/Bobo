@@ -1,8 +1,7 @@
-package com.zynet.bobo.mvc.http;
+package com.zynet.bobo.mvc.http.proxyhttp;
 
 import android.content.Context;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvc.volley.network;
+package com.zynet.bobo.mvc.http.volley;
 
 import android.os.Bundle;
 

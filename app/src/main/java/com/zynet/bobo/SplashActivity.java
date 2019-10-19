@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.zynet.bobo.base.BaseActivity;
-import com.zynet.bobo.mvc.ui.LoginActivity;
 import com.zynet.bobo.utils.ToastUtil;
 
 import permissions.dispatcher.NeedsPermission;
@@ -113,8 +112,8 @@ public class SplashActivity extends BaseActivity {
         @Override
         public void run() {
             // startActivity(new Intent(SplashActivity.this, MainActivity.class));
-           // startActivity(new Intent(SplashActivity.this, TestActivity.class));
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+           // startActivity(new Intent(SplashActivity.this, MvpTestActivity.class));
+            startActivity(new Intent(SplashActivity.this, MvcTestActivity.class));
             finish();
         }
     }

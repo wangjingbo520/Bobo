@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvc.http;
+package com.zynet.bobo.mvc.http.proxyhttp;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

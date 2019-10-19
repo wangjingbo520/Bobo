@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvc.volley;
+package com.zynet.bobo.mvc.http.volley;
 
 import android.os.Handler;
 import android.os.Message;
@@ -10,11 +10,11 @@ import java.lang.ref.WeakReference;
  * @date 2019/10/16 0016
  * describe
  */
-public class MyHandler<T extends IHandleMessage> extends Handler {
+public class MyVolleyHandler<T extends IHandleMessage> extends Handler {
 
     private WeakReference<T> mTarget;
 
-    public MyHandler(T t) {
+    public MyVolleyHandler(T t) {
         mTarget = new WeakReference<T>(t);
     }
 

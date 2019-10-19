@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvc.http;
+package com.zynet.bobo.mvc.http.proxyhttp;
 
 import android.os.Handler;
 

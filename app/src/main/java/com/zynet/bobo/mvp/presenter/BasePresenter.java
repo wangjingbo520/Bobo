@@ -1,11 +1,12 @@
-package com.zynet.bobo.base;
+package com.zynet.bobo.mvp.presenter;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.zynet.bobo.base.IBaseView;
 import com.zynet.bobo.mvp.http.RequestClient;
 
 /**
  * @author Bobo
- * @date 2019/10/7 0007
+ * @date 2019/10/7
  * describe
  */
 public class BasePresenter<T extends IBaseView> {
@@ -24,7 +25,7 @@ public class BasePresenter<T extends IBaseView> {
         this.mView = (T) iBaseView;
     }
 
-    protected void detachView() {
+    public void detachView() {
         if (mView != null) {
             mView = null;
         }

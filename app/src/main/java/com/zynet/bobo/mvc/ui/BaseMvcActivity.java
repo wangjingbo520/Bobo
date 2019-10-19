@@ -1,19 +1,23 @@
 package com.zynet.bobo.mvc.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Message;
-import android.view.View;
+import android.util.Log;
 
+import com.android.volley.NetworkError;
 import com.android.volley.Request;
+import com.google.gson.Gson;
+import com.zynet.bobo.R;
 import com.zynet.bobo.base.BaseActivity;
-import com.zynet.bobo.constant.InterfaceMethod;
-import com.zynet.bobo.mvc.volley.IHandleMessage;
-import com.zynet.bobo.mvc.volley.MyHandler;
-import com.zynet.bobo.mvc.volley.network.NetworkError;
-import com.zynet.bobo.mvc.volley.network.RequestHandler;
+import com.zynet.bobo.base.IBaseView;
+import com.zynet.bobo.bean.TestBean;
+import com.zynet.bobo.constant.MyConfig;
+import com.zynet.bobo.mvc.http.volley.RequestHandler;
 import com.zynet.bobo.ui.widget.dialog.MessageDialog;
+import com.zynet.bobo.ui.widget.statusview.MultiStateView;
+import com.zynet.bobo.ui.widget.statusview.SimpleMultiStateView;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,14 +25,18 @@ import java.util.Map;
  * @date 2019/9/21
  * describe
  */
-public abstract class BaseMvcActivity extends BaseActivity implements IHandleMessage {
+@SuppressLint("Registered")
+public class BaseMvcActivity extends BaseActivity implements IHandleMessage, IBaseView {
 
-    public MyHandler<BaseMvcActivity> mHandler;
+    private static final String TAG = "------->";
+    public MyVolleyHandler<BaseMvcActivity> mHandler;
+
+    private SimpleMultiStateView mSimpleMultiStateView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHandler = new MyHandler<>(this);
+        mHandler = new MyVolleyHandler<>(this);
     }
 
     @Override
@@ -40,14 +48,14 @@ public abstract class BaseMvcActivity extends BaseActivity implements IHandleMes
                 // startActivity(new Intent(this, HttpsTestActivity.class));
             });
             dialog.show();
-        } else {
+        } else if (msg.what == MyConfig.RESPONCE_OK) {
+            //请求成功回调
             String result = (String) msg.obj;
+            TestBean testBean = new Gson().fromJson(result, TestBean.class);
+            Log.e(TAG, testBean.getData().get(0).toString());
         }
     }
 
-    public void onSucess(String InterfaceMethod,String request){
-
-    }
 
     /**
      * get请求
@@ -71,4 +79,49 @@ public abstract class BaseMvcActivity extends BaseActivity implements IHandleMes
         RequestHandler.addRequest(Request.Method.POST, this, mHandler, RESULT_GET_IP_INFO, null, interfaceMethod, params, null, true);
     }
 
+
+    public void initStateView() {
+        if (mSimpleMultiStateView == null) return;
+        mSimpleMultiStateView.setEmptyResource(R.layout.view_empty)
+                .setRetryResource(R.layout.view_retry)
+                //  .setLoadingResource(R.layout.view_loading)
+                .setNoNetResource(R.layout.view_nonet)
+                .build()
+                .setonReLoadlistener(new MultiStateView.onReLoadlistener() {
+                    @Override
+                    public void onReload() {
+                        onRetry();
+                    }
+                });
+    }
+
+
+    //加载失败
+    @Override
+    public void showFaild() {
+        if (mSimpleMultiStateView != null) {
+            mSimpleMultiStateView.showErrorView();
+        }
+    }
+
+    //没网络连接
+    @Override
+    public void showNoNet() {
+        if (mSimpleMultiStateView != null) {
+            mSimpleMultiStateView.showNoNetView();
+        }
+    }
+
+    //重试
+    @Override
+    public void onRetry() {
+
+    }
+
+
+    //没有数据
+    @Override
+    public void showEmptyView() {
+
+    }
 }

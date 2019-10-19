@@ -1,8 +1,8 @@
-package com.zynet.bobo.mvc.http;
+package com.zynet.bobo.mvc.http.proxyhttp;
 
 /**
  * @author Bobo
- * @date 2019/9/22 0022
+ * @date 2019/9/22
  * describe
  */
 public interface ICallBack {

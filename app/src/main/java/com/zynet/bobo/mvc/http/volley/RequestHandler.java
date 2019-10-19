@@ -1,4 +1,4 @@
-package com.zynet.bobo.mvc.volley.network;
+package com.zynet.bobo.mvc.http.volley;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -17,7 +18,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.zynet.bobo.MyApplication;
-import com.zynet.bobo.constant.Config;
+import com.zynet.bobo.constant.MyConfig;
 import com.zynet.bobo.ui.widget.dialog.LoadingDialog;
 import com.zynet.bobo.utils.LogUtil;
 import com.zynet.bobo.utils.ToastUtil;
@@ -56,7 +57,6 @@ public class RequestHandler {
 
     }
 
-
     /**
      * @param method   Request.Method.GET 或 Request.Method.POST
      * @param handler  传递消息
@@ -76,7 +76,7 @@ public class RequestHandler {
             url = NetworkHelper.getUrlWithParams(url, params);
         }
         listener.onPreRequest();
-        StringRequest request = new StringRequest(method, Config.BASE_URL + url, response -> {
+        StringRequest request = new StringRequest(method, MyConfig.BASE_URL + url, response -> {
 
             onVolleyResponse(response, handler, what, bundle);
             listener.onResponse();
@@ -107,9 +107,12 @@ public class RequestHandler {
         };
 
         request.setRetryPolicy(new DefaultRetryPolicy(
-                10 * 1000,//链接超时时间
-                3,//重新尝试连接次数
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT//曲线增长因子
+                //连接超时设置
+                10 * 1000,
+                //重新尝试连接次数
+                3,
+                //曲线增长因子
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         ));
 
         RequestManager.getInstance(MyApplication.getContext()).getRequestQueue().add(request);
@@ -139,10 +142,7 @@ public class RequestHandler {
                     NetworkError.error("" + code, json, bundle);
                     return;
                 }
-//                JSONObject data = json.getJSONObject("data");
-//                JSON.parseObject("", )
             }
-
         } catch (Exception e) {
             e.printStackTrace();
 

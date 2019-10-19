@@ -1,4 +1,4 @@
-package com.zynet.bobo.base;
+package com.zynet.bobo.mvp.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+
+import com.zynet.bobo.base.BaseActivity;
+import com.zynet.bobo.mvp.presenter.BasePresenter;
+import com.zynet.bobo.base.IBase;
+import com.zynet.bobo.base.IBaseView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -59,9 +64,17 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
     }
 
 
+    /**
+     * 创造presenter
+     *
+     * @return 返回presenter
+     */
     protected abstract T1 createPresenter();
 
 
+    /**
+     *
+     */
     @Override
     public void showFaild() {
 
@@ -75,6 +88,11 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
 
     @Override
     public void onRetry() {
+
+    }
+
+    @Override
+    public void showEmptyView() {
 
     }
 

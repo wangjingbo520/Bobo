@@ -21,4 +21,9 @@ public interface IBaseView {
      * 重试
      */
     void onRetry();
+
+    /**
+     * 没有数据
+     */
+    void showEmptyView();
 }
