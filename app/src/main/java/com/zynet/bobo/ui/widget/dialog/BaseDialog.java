@@ -43,7 +43,9 @@ public abstract class BaseDialog {
 
     public void dismiss() {
         if (mDialog != null) {
-            mDialog.dismiss();
+            if (mDialog.isShowing()) {
+                mDialog.dismiss();
+            }
         }
     }
 }

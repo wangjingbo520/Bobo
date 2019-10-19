@@ -85,28 +85,30 @@ class RequestUtil {
 
     private boolean isShowDialog = false;
 
+    private Context mContext;
 
-    RequestUtil(String methodType, String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
-        this(methodType, url, null, null, null, null, null, null, paramsMap, headerMap, callBack, isShowDialog);
+
+    RequestUtil(Context context, String methodType, String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        this(context, methodType, url, null, null, null, null, null, null, paramsMap, headerMap, callBack, isShowDialog);
     }
 
-    RequestUtil(String methodType, String url, String jsonStr, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
-        this(methodType, url, jsonStr, null, null, null, null, null, null, headerMap, callBack, isShowDialog);
+    RequestUtil(Context context, String methodType, String url, String jsonStr, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        this(context, methodType, url, jsonStr, null, null, null, null, null, null, headerMap, callBack, isShowDialog);
     }
 
-    RequestUtil(String methodType, String url, Map<String, String> paramsMap, File file, String fileKey, String fileType, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
-        this(methodType, url, null, file, null, fileKey, null, fileType, paramsMap, headerMap, callBack, isShowDialog);
+    RequestUtil(Context context, String methodType, String url, Map<String, String> paramsMap, File file, String fileKey, String fileType, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        this(context, methodType, url, null, file, null, fileKey, null, fileType, paramsMap, headerMap, callBack, isShowDialog);
     }
 
-    RequestUtil(String methodType, String url, Map<String, String> paramsMap, List<File> fileList, String fileKey, String fileType, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
-        this(methodType, url, null, null, fileList, fileKey, null, fileType, paramsMap, headerMap, callBack, isShowDialog);
+    RequestUtil(Context context, String methodType, String url, Map<String, String> paramsMap, List<File> fileList, String fileKey, String fileType, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        this(context, methodType, url, null, null, fileList, fileKey, null, fileType, paramsMap, headerMap, callBack, isShowDialog);
     }
 
-    RequestUtil(String methodType, String url, Map<String, String> paramsMap, Map<String, File> fileMap, String fileType, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
-        this(methodType, url, null, null, null, null, fileMap, fileType, paramsMap, headerMap, callBack, isShowDialog);
+    RequestUtil(Context context, String methodType, String url, Map<String, String> paramsMap, Map<String, File> fileMap, String fileType, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        this(context, methodType, url, null, null, null, null, fileMap, fileType, paramsMap, headerMap, callBack, isShowDialog);
     }
 
-    private RequestUtil(String methodType, String url, String jsonStr, File file, List<File> fileList, String fileKey, Map<String, File> fileMap, String fileType, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+    private RequestUtil(Context context, String methodType, String url, String jsonStr, File file, List<File> fileList, String fileKey, Map<String, File> fileMap, String fileType, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
         mMetyodType = methodType;
         mUrl = url;
         mJsonStr = jsonStr;
@@ -119,6 +121,7 @@ class RequestUtil {
         mHeaderMap = headerMap;
         mCallBack = callBack;
         this.isShowDialog = isShowDialog;
+        this.mContext = context;
         getInstance();
     }
 
@@ -295,11 +298,20 @@ class RequestUtil {
 
 
     void execute() {
+        if (isShowDialog && mContext != null) {
+            if (listener == null) {
+                listener = new DefaultDialogRequestListener(mContext);
+            }
+            listener.onPreRequest();
+        }
         mOkHttpClient.newCall(mOkHttpRequest).enqueue(new Callback() {
             @Override
             public void onFailure(final Call call, final IOException e) {
                 if (mCallBack != null) {
                     mCallBack.onError(call, e);
+                }
+                if (listener != null) {
+                    listener.onFailed();
                 }
             }
 
@@ -307,6 +319,9 @@ class RequestUtil {
             public void onResponse(final Call call, final Response response) throws IOException {
                 if (mCallBack != null) {
                     mCallBack.onSeccess(call, response);
+                }
+                if (listener != null) {
+                    listener.onResponse();
                 }
             }
 
@@ -423,7 +438,7 @@ class RequestUtil {
     /**
      * 请求过程中没有加载进度框
      */
-    private  class DefaultRequestListener implements NetWorkRequestListener {
+    private class DefaultRequestListener implements NetWorkRequestListener {
 
 
         @Override

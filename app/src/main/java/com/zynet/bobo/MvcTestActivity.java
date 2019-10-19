@@ -41,7 +41,7 @@ public class MvcTestActivity extends BaseMvcActivity {
 
     private void okHttpTest() {
         String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
-        OkhttpUtil.okHttpGet(url, new CallBackUtil.CallBackString() {
+        OkhttpUtil.okHttpGet(this, url, new CallBackUtil.CallBackString() {
             @Override
             public void onFailure(Call call, Exception e) {
             }
