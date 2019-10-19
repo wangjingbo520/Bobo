@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 
-import com.android.volley.NetworkError;
 import com.android.volley.Request;
 import com.google.gson.Gson;
 import com.zynet.bobo.R;
@@ -13,6 +12,9 @@ import com.zynet.bobo.base.BaseActivity;
 import com.zynet.bobo.base.IBaseView;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.MyConfig;
+import com.zynet.bobo.mvc.http.volley.IHandleMessage;
+import com.zynet.bobo.mvc.http.volley.MyVolleyHandler;
+import com.zynet.bobo.mvc.http.volley.NetworkError;
 import com.zynet.bobo.mvc.http.volley.RequestHandler;
 import com.zynet.bobo.ui.widget.dialog.MessageDialog;
 import com.zynet.bobo.ui.widget.statusview.MultiStateView;

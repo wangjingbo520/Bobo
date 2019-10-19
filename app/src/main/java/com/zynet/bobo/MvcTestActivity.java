@@ -2,14 +2,20 @@ package com.zynet.bobo;
 
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.zynet.bobo.mvc.ui.BaseMvcActivity;
 import com.zynet.bobo.constant.InterfaceMethod;
+import com.zynet.bobo.constant.MyConfig;
+import com.zynet.bobo.mvc.http.okhttp.CallBackUtil;
+import com.zynet.bobo.mvc.http.okhttp.OkhttpUtil;
+import com.zynet.bobo.mvc.ui.BaseMvcActivity;
+import com.zynet.bobo.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
 
 
 /**
@@ -29,10 +35,26 @@ public class MvcTestActivity extends BaseMvcActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvctest);
         ButterKnife.bind(this);
-        httpTest();
+        //   volleyHttpTest();
+        okHttpTest();
     }
 
-    private void httpTest() {
+    private void okHttpTest() {
+        String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
+        OkhttpUtil.okHttpGet(url, new CallBackUtil.CallBackString() {
+            @Override
+            public void onFailure(Call call, Exception e) {
+            }
+
+            @Override
+            public void onResponse(String response) {
+                ToastUtil.showMessage("Success");
+                Log.d("kwwl", response);
+            }
+        }, true);
+    }
+
+    private void volleyHttpTest() {
         addGetRequest(InterfaceMethod.MAIN, RESULT_GET_IP_INFO);
     }
 

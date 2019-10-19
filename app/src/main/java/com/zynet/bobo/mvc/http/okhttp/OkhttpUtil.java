@@ -28,8 +28,8 @@ public class OkhttpUtil {
      * @param url：url
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpGet(String url, CallBackUtil callBack) {
-        okHttpGet(url, null, null, callBack);
+    public static void okHttpGet(String url, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpGet(url, null, null, callBack, isShowDialog);
     }
 
     /**
@@ -39,8 +39,8 @@ public class OkhttpUtil {
      * @param paramsMap：map集合，封装键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpGet(String url, Map<String, String> paramsMap, CallBackUtil callBack) {
-        okHttpGet(url, paramsMap, null, callBack);
+    public static void okHttpGet(String url, Map<String, String> paramsMap, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpGet(url, paramsMap, null, callBack, isShowDialog);
     }
 
     /**
@@ -51,8 +51,8 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpGet(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_GET, url, paramsMap, headerMap, callBack).execute();
+    public static void okHttpGet(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_GET, url, paramsMap, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
@@ -61,8 +61,8 @@ public class OkhttpUtil {
      * @param url：url
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPost(String url, CallBackUtil callBack) {
-        okHttpPost(url, null, callBack);
+    public static void okHttpPost(String url, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpPost(url, null, callBack, isShowDialog);
     }
 
     /**
@@ -72,8 +72,8 @@ public class OkhttpUtil {
      * @param paramsMap：map集合，封装键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPost(String url, Map<String, String> paramsMap, CallBackUtil callBack) {
-        okHttpPost(url, paramsMap, null, callBack);
+    public static void okHttpPost(String url, Map<String, String> paramsMap, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpPost(url, paramsMap, null, callBack, isShowDialog);
     }
 
     /**
@@ -84,8 +84,8 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPost(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_POST, url, paramsMap, headerMap, callBack).execute();
+    public static void okHttpPost(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_POST, url, paramsMap, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
@@ -94,8 +94,8 @@ public class OkhttpUtil {
      * @param url：url
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPut(String url, CallBackUtil callBack) {
-        okHttpPut(url, null, callBack);
+    public static void okHttpPut(String url, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpPut(url, null, callBack, isShowDialog);
     }
 
     /**
@@ -105,8 +105,8 @@ public class OkhttpUtil {
      * @param paramsMap：map集合，封装键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPut(String url, Map<String, String> paramsMap, CallBackUtil callBack) {
-        okHttpPut(url, paramsMap, null, callBack);
+    public static void okHttpPut(String url, Map<String, String> paramsMap, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpPut(url, paramsMap, null, callBack, isShowDialog);
     }
 
     /**
@@ -117,8 +117,8 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPut(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_PUT, url, paramsMap, headerMap, callBack).execute();
+    public static void okHttpPut(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_PUT, url, paramsMap, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
@@ -127,8 +127,8 @@ public class OkhttpUtil {
      * @param url：url
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpDelete(String url, CallBackUtil callBack) {
-        okHttpDelete(url, null, callBack);
+    public static void okHttpDelete(String url, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpDelete(url, null, callBack, isShowDialog);
     }
 
     /**
@@ -138,8 +138,8 @@ public class OkhttpUtil {
      * @param paramsMap：map集合，封装键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpDelete(String url, Map<String, String> paramsMap, CallBackUtil callBack) {
-        okHttpDelete(url, paramsMap, null, callBack);
+    public static void okHttpDelete(String url, Map<String, String> paramsMap, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpDelete(url, paramsMap, null, callBack, isShowDialog);
     }
 
     /**
@@ -150,8 +150,8 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpDelete(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_DELETE, url, paramsMap, headerMap, callBack).execute();
+    public static void okHttpDelete(String url, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_DELETE, url, paramsMap, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
@@ -161,8 +161,8 @@ public class OkhttpUtil {
      * @param jsonStr：json格式的键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPostJson(String url, String jsonStr, CallBackUtil callBack) {
-        okHttpPostJson(url, jsonStr, null, callBack);
+    public static void okHttpPostJson(String url, String jsonStr, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpPostJson(url, jsonStr, null, callBack, isShowDialog);
     }
 
     /**
@@ -173,8 +173,8 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpPostJson(String url, String jsonStr, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_POST, url, jsonStr, headerMap, callBack).execute();
+    public static void okHttpPostJson(String url, String jsonStr, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_POST, url, jsonStr, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
@@ -186,8 +186,8 @@ public class OkhttpUtil {
      * @param fileType：File类型，是image，video，audio，file
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。还可以重写onProgress方法，得到上传进度
      */
-    public static void okHttpUploadFile(String url, File file, String fileKey, String fileType, CallBackUtil callBack) {
-        okHttpUploadFile(url, file, fileKey, fileType, null, callBack);
+    public static void okHttpUploadFile(String url, File file, String fileKey, String fileType, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpUploadFile(url, file, fileKey, fileType, null, callBack, isShowDialog);
     }
 
     /**
@@ -200,8 +200,8 @@ public class OkhttpUtil {
      * @param paramsMap：map集合，封装键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。还可以重写onProgress方法，得到上传进度
      */
-    public static void okHttpUploadFile(String url, File file, String fileKey, String fileType, Map<String, String> paramsMap, CallBackUtil callBack) {
-        okHttpUploadFile(url, file, fileKey, fileType, paramsMap, null, callBack);
+    public static void okHttpUploadFile(String url, File file, String fileKey, String fileType, Map<String, String> paramsMap, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpUploadFile(url, file, fileKey, fileType, paramsMap, null, callBack, isShowDialog);
     }
 
     /**
@@ -215,8 +215,8 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。还可以重写onProgress方法，得到上传进度
      */
-    public static void okHttpUploadFile(String url, File file, String fileKey, String fileType, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_POST, url, paramsMap, file, fileKey, fileType, headerMap, callBack).execute();
+    public static void okHttpUploadFile(String url, File file, String fileKey, String fileType, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_POST, url, paramsMap, file, fileKey, fileType, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
@@ -228,8 +228,8 @@ public class OkhttpUtil {
      * @param fileType：File类型，是image，video，audio，file
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpUploadListFile(String url, List<File> fileList, String fileKey, String fileType, CallBackUtil callBack) {
-        okHttpUploadListFile(url, null, fileList, fileKey, fileType, callBack);
+    public static void okHttpUploadListFile(String url, List<File> fileList, String fileKey, String fileType, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpUploadListFile(url, null, fileList, fileKey, fileType, callBack, isShowDialog);
     }
 
     /**
@@ -242,8 +242,8 @@ public class OkhttpUtil {
      * @param paramsMap：map集合，封装键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpUploadListFile(String url, Map<String, String> paramsMap, List<File> fileList, String fileKey, String fileType, CallBackUtil callBack) {
-        okHttpUploadListFile(url, paramsMap, fileList, fileKey, fileType, null, callBack);
+    public static void okHttpUploadListFile(String url, Map<String, String> paramsMap, List<File> fileList, String fileKey, String fileType, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpUploadListFile(url, paramsMap, fileList, fileKey, fileType, null, callBack, isShowDialog);
     }
 
     /**
@@ -257,8 +257,8 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpUploadListFile(String url, Map<String, String> paramsMap, List<File> fileList, String fileKey, String fileType, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_POST, url, paramsMap, fileList, fileKey, fileType, headerMap, callBack).execute();
+    public static void okHttpUploadListFile(String url, Map<String, String> paramsMap, List<File> fileList, String fileKey, String fileType, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_POST, url, paramsMap, fileList, fileKey, fileType, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
@@ -269,8 +269,8 @@ public class OkhttpUtil {
      * @param fileType：File类型，是image，video，audio，file
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpUploadMapFile(String url, Map<String, File> fileMap, String fileType, CallBackUtil callBack) {
-        okHttpUploadMapFile(url, fileMap, fileType, null, callBack);
+    public static void okHttpUploadMapFile(String url, Map<String, File> fileMap, String fileType, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpUploadMapFile(url, fileMap, fileType, null, callBack, isShowDialog);
     }
 
     /**
@@ -282,8 +282,8 @@ public class OkhttpUtil {
      * @param paramsMap：map集合，封装键值对参数
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpUploadMapFile(String url, Map<String, File> fileMap, String fileType, Map<String, String> paramsMap, CallBackUtil callBack) {
-        okHttpUploadMapFile(url, fileMap, fileType, paramsMap, null, callBack);
+    public static void okHttpUploadMapFile(String url, Map<String, File> fileMap, String fileType, Map<String, String> paramsMap, CallBackUtil callBack, boolean isShowDialog) {
+        okHttpUploadMapFile(url, fileMap, fileType, paramsMap, null, callBack, isShowDialog);
     }
 
     /**
@@ -296,36 +296,36 @@ public class OkhttpUtil {
      * @param headerMap：map集合，封装请求头键值对
      * @param callBack：回调接口，onFailure方法在请求失败时调用，onResponse方法在请求成功后调用，这两个方法都执行在UI线程。
      */
-    public static void okHttpUploadMapFile(String url, Map<String, File> fileMap, String fileType, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack) {
-        new RequestUtil(METHOD_POST, url, paramsMap, fileMap, fileType, headerMap, callBack).execute();
+    public static void okHttpUploadMapFile(String url, Map<String, File> fileMap, String fileType, Map<String, String> paramsMap, Map<String, String> headerMap, CallBackUtil callBack, boolean isShowDialog) {
+        new RequestUtil(METHOD_POST, url, paramsMap, fileMap, fileType, headerMap, callBack, isShowDialog).execute();
     }
 
     /**
      * 下载文件,不带参数
      */
-    public static void okHttpDownloadFile(String url, CallBackUtil.CallBackFile callBack) {
-        okHttpDownloadFile(url, null, callBack);
+    public static void okHttpDownloadFile(String url, CallBackUtil.CallBackFile callBack, boolean isShowDialog) {
+        okHttpDownloadFile(url, null, callBack, isShowDialog);
     }
 
     /**
      * 下载文件,带参数
      */
-    public static void okHttpDownloadFile(String url, Map<String, String> paramsMap, CallBackUtil.CallBackFile callBack) {
-        okHttpGet(url, paramsMap, null, callBack);
+    public static void okHttpDownloadFile(String url, Map<String, String> paramsMap, CallBackUtil.CallBackFile callBack, boolean isShowDialog) {
+        okHttpGet(url, paramsMap, null, callBack, isShowDialog);
     }
 
     /**
      * 加载图片
      */
-    public static void okHttpGetBitmap(String url, CallBackUtil.CallBackBitmap callBack) {
-        okHttpGetBitmap(url, null, callBack);
+    public static void okHttpGetBitmap(String url, CallBackUtil.CallBackBitmap callBack, boolean isShowDialog) {
+        okHttpGetBitmap(url, null, callBack, isShowDialog);
     }
 
     /**
      * 加载图片，带参数
      */
-    public static void okHttpGetBitmap(String url, Map<String, String> paramsMap, CallBackUtil.CallBackBitmap callBack) {
-        okHttpGet(url, paramsMap, null, callBack);
+    public static void okHttpGetBitmap(String url, Map<String, String> paramsMap, CallBackUtil.CallBackBitmap callBack, boolean isShowDialog) {
+        okHttpGet(url, paramsMap, null, callBack, isShowDialog);
     }
 
 
