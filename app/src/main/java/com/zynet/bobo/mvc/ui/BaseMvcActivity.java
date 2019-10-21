@@ -17,7 +17,6 @@ import com.zynet.bobo.mvc.http.volley.MyVolleyHandler;
 import com.zynet.bobo.mvc.http.volley.NetworkError;
 import com.zynet.bobo.mvc.http.volley.RequestHandler;
 import com.zynet.bobo.ui.widget.dialog.MessageDialog;
-import com.zynet.bobo.ui.widget.statusview.MultiStateView;
 import com.zynet.bobo.ui.widget.statusview.SimpleMultiStateView;
 
 import java.util.Map;
@@ -88,12 +87,7 @@ public class BaseMvcActivity extends BaseActivity implements IHandleMessage, IBa
                 .setLoadingResource(R.layout.loading_dialog)
                 .setNoNetResource(R.layout.view_nonet)
                 .build()
-                .setonReLoadlistener(new MultiStateView.onReLoadlistener() {
-                    @Override
-                    public void onReload() {
-                        onRetry();
-                    }
-                });
+                .setonReLoadlistener(this::onRetry);
     }
 
     @Override

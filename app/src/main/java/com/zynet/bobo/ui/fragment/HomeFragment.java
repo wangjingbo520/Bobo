@@ -1,59 +1,23 @@
 package com.zynet.bobo.ui.fragment;
 
-import android.app.Dialog;
-import android.os.Bundle;
-import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
-
 import com.zynet.bobo.R;
-
-import butterknife.BindView;
+import com.zynet.bobo.mvp.presenter.BasePresenter;
+import com.zynet.bobo.mvp.ui.AbstractMvpFragment;
 
 /**
  * @author Bobo
  * @date 2019/9/22 0022
- * describe
+ * describe 首页
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends AbstractMvpFragment {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
+    }
 
-//    @BindView(R.id.tvContent)
-//    TextView tvContent;
-//
-//    public static HomeFragment newInstance() {
-//        return new HomeFragment();
-//    }
-//
-//    @Override
-//    public int getLayout() {
-//        return R.layout.fragment_home;
-//    }
-//
-//    @Override
-//    public void initView() {
-//
-//    }
-//
-//    @Override
-//    public void initData(Bundle savedInstanceState) {
-//
-//    }
-//
-//
-//    @Override
-//    public Dialog getLoadDialog() {
-//        return dialog;
-//    }
-//
-//    @Override
-//    public void cancelLoadDialog() {
-//        if (dialog != null && dialog.isShowing()) {
-//            dialog.dismiss();
-//        }
-//    }
-//
-//    @Override
-//    protected BaseMvpPresenter createPresenter() {
-//        return null;
-//    }
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
 }

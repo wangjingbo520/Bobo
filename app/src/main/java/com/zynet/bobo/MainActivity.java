@@ -8,9 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.zynet.bobo.base.SmartFragmentStatePagerAdapter;
 import com.zynet.bobo.ui.fragment.AboutFragment;
 import com.zynet.bobo.ui.fragment.HomeFragment;
 import com.zynet.bobo.ui.fragment.MyFragment;
@@ -106,6 +108,24 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 break;
+        }
+    }
+
+    class MyFragmentStateAdapter extends SmartFragmentStatePagerAdapter{
+
+        public MyFragmentStateAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return 0;
         }
     }
 

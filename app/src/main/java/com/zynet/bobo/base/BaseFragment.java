@@ -8,4 +8,6 @@ import androidx.fragment.app.Fragment;
  * describe
  */
 public class BaseFragment extends Fragment {
+
+
 }
