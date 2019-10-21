@@ -21,12 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MvpTestActivity" />
-        <!-- <activity android:name=".mvc.ui.MvcTestActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+        <activity
+            android:name=".base.LoadMultiDexActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:process=":multi_dex" />
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:screenOrientation="portrait" /> <!-- <activity -->
