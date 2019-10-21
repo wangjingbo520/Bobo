@@ -166,17 +166,12 @@ class RequestUtil {
      * 得到body对象
      */
     private RequestBody getRequestBody() {
-        /**
-         * 首先判断mJsonStr是否为空，由于mJsonStr与mParamsMap不可能同时存在，所以先判断mJsonStr
-         */
+        //首先判断mJsonStr是否为空，由于mJsonStr与mParamsMap不可能同时存在，所以先判断mJsonStr
         if (!TextUtils.isEmpty(mJsonStr)) {
-            MediaType JSON = MediaType.parse("application/json; charset=utf-8");//数据类型为json格式，
-            return RequestBody.create(JSON, mJsonStr);//json数据，
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            return RequestBody.create(JSON, mJsonStr);
         }
-
-        /**
-         * post,put,delete都需要body，但也都有body等于空的情况，此时也应该有body对象，但body中的内容为空
-         */
+        //post,put,delete都需要body，但也都有body等于空的情况，此时也应该有body对象，但body中的内容为空
         FormBody.Builder formBody = new FormBody.Builder();
         if (mParamsMap != null) {
             for (String key : mParamsMap.keySet()) {
@@ -205,18 +200,20 @@ class RequestUtil {
      * 设置上传文件
      */
     private void setFile() {
-        if (mFile != null) {//只有一个文件，且没有文件名
+        //只有一个文件，且没有文件名
+        if (mFile != null) {
             if (mParamsMap == null) {
                 setPostFile();
             } else {
                 setPostParameAndFile();
             }
-        } else if (mfileList != null) {//文件集合，只有一个文件名。所以这个也支持单个有文件名的文件
+        } else if (mfileList != null) {
+            //文件集合，只有一个文件名。所以这个也支持单个有文件名的文件
             setPostParameAndListFile();
-        } else if (mfileMap != null) {//多个文件，每个文件对应一个文件名
+        } else if (mfileMap != null) {
+            //多个文件，每个文件对应一个文件名
             setPostParameAndMapFile();
         }
-
     }
 
     /**
@@ -225,7 +222,8 @@ class RequestUtil {
     private void setPostFile() {
         if (mFile != null && mFile.exists()) {
             MediaType fileType = MediaType.parse(mFileType);
-            RequestBody body = RequestBody.create(fileType, mFile);//json数据，
+            //json数据，
+            RequestBody body = RequestBody.create(fileType, mFile);
             mRequestBuilder.post(new ProgressRequestBody(body, mCallBack));
         }
     }

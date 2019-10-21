@@ -1,6 +1,7 @@
 package com.zynet.bobo.mvp.presenter;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 import com.zynet.bobo.base.IBaseView;
 import com.zynet.bobo.mvp.http.RequestClient;
 
@@ -17,6 +18,8 @@ public class BasePresenter<T extends IBaseView> {
 
     protected RxAppCompatActivity mContext;
 
+    protected RxFragment mFragmentContext;
+
     protected T mView;
 
     public BasePresenter(RxAppCompatActivity rxAppCompatActivity, IBaseView iBaseView) {
@@ -24,6 +27,14 @@ public class BasePresenter<T extends IBaseView> {
         this.mContext = rxAppCompatActivity;
         this.mView = (T) iBaseView;
     }
+
+
+    public BasePresenter(RxFragment rxFragment, IBaseView iBaseView) {
+        mRequestClient = RequestClient.getInstance();
+        this.mFragmentContext = rxFragment;
+        this.mView = (T) iBaseView;
+    }
+
 
     public void detachView() {
         if (mView != null) {

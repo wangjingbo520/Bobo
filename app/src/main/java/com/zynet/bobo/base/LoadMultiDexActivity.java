@@ -1,3 +1,23 @@
+package com.zynet.bobo.base;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Process;
+import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.multidex.MultiDex;
+
+import com.zynet.bobo.R;
+
+import java.io.File;
+
+/**
+ * @author Bobo
+ * @date 2019/9/21
+ * describe 启动页优化
+ */
 public class LoadMultiDexActivity extends AppCompatActivity {
 
     private static final String TAG = "LoadMultiDexActivity";

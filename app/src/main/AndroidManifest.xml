@@ -28,7 +28,7 @@
             android:process=":multi_dex" />
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:screenOrientation="portrait" /> <!-- <activity -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />

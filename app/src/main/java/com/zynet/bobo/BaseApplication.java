@@ -1,3 +1,25 @@
+package com.zynet.bobo;
+
+import android.annotation.SuppressLint;
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
+import androidx.multidex.MultiDex;
+
+import com.zynet.bobo.base.LoadMultiDexActivity;
+import com.zynet.bobo.utils.SystemUtil;
+
+import java.io.File;
+
+
+/**
+ * @author Bobo
+ * @date 2019/9/21
+ * describe 启动页优化
+ */
+@SuppressLint("Registered")
 public class BaseApplication extends Application {
 
     private static final String TAG = "lxb-MyApplication";
@@ -25,18 +47,17 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (!isMainProcess(this)){
+        if (!isMainProcess(this)) {
             Log.d(TAG, "onCreate: 非主进程，return");
             return;
         }
 
         Log.d(TAG, "主进程 onCreate: 一些初始化操作");
-
     }
 
-
     private void loadMultiDex(Context context) {
-        newTempFile(context); //创建临时文件
+        //创建临时文件
+        newTempFile(context);
 
         //启动另一个进程去加载MultiDex
         Intent intent = new Intent(context, LoadMultiDexActivity.class);
@@ -77,6 +98,7 @@ public class BaseApplication extends Application {
 
     /**
      * 检查MultiDex是否安装完,通过判断临时文件是否被删除
+     *
      * @param context
      * @return
      */
@@ -95,9 +117,9 @@ public class BaseApplication extends Application {
                 }
             }
 
-            Log.d(TAG, "checkUntilLoadDexSuccess: 轮循结束，等待时间 " +(waitTime * i));
+            Log.d(TAG, "checkUntilLoadDexSuccess: 轮循结束，等待时间 " + (waitTime * i));
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

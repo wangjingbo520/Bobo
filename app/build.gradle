@@ -11,6 +11,15 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        defaultConfig {
+            //分包1,指定某个类在maindex，例如LeakCanary启动的时候会初始化一个ContentProvider
+            multiDexEnabled true
+            // 打包到main dex的这些类的混淆规制，没特殊需求就给个空文件
+            multiDexKeepProguard file('multiDexKeep.pro')
+            // keep specific classes
+            multiDexKeepFile file('maindexlist.txt')
+        }
     }
     buildTypes {
         release {
@@ -68,6 +77,7 @@ dependencies {
 
     implementation 'com.alibaba:fastjson:1.2.5'
     
+    //分包
     implementation 'androidx.multidex:multidex:2.0.1'
 
     //implementation 'com.squareup.okhttp:okhttp-urlconnection:2.4.0'
