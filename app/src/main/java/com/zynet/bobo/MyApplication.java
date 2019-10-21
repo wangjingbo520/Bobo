@@ -1,26 +1,22 @@
 package com.zynet.bobo;
 
-import android.app.Application;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
+import com.zynet.bobo.base.BaseApplication;
 
 /**
  * @author Bobo
- * @date 2019/9/22 0022
+ * @date 2019/9/22 
  * describe
  */
-public class MyApplication extends Application {
+public class MyApplication extends BaseApplication {
 
     public static MyApplication myApplication;
 
-    private RequestQueue mRequestQueue;
-
+    
     @Override
     public void onCreate() {
         super.onCreate();
         myApplication = this;
-        mRequestQueue = Volley.newRequestQueue(this);
+      
     }
 
     public static MyApplication getContext() {
