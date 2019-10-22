@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.zynet.bobo.R;
+import com.zynet.bobo.base.BaseLazyFragment;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
 import com.zynet.bobo.constant.MyConfig;
 import com.zynet.bobo.mvc.http.okhttp.CallBackUtil;
 import com.zynet.bobo.mvc.http.okhttp.OkhttpUtil;
 import com.zynet.bobo.mvp.presenter.BasePresenter;
-import com.zynet.bobo.mvp.ui.AbstractMvpFragment;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -27,7 +27,7 @@ import okhttp3.Call;
  * @date 2019/9/22 0022
  * describe 首页
  */
-public class HomeFragment extends AbstractMvpFragment {
+public class HomeFragment extends BaseLazyFragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
@@ -41,12 +41,6 @@ public class HomeFragment extends AbstractMvpFragment {
         return null;
     }
 
-
-    @Override
-    public void initData() {
-        super.initData();
-        getData();
-    }
 
     private void getData() {
         String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
@@ -63,6 +57,12 @@ public class HomeFragment extends AbstractMvpFragment {
                 recyclerView.setAdapter(new MyAdapter(new Gson().fromJson(response, TestBean.class)));
             }
         }, true);
+    }
+
+    @Override
+    public void onLazyLoad() {
+        getData();
+
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {

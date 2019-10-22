@@ -5,13 +5,15 @@ import android.os.Bundle;
 
 import androidx.annotation.UiThread;
 
+import com.zynet.bobo.mvp.ui.AbstractMvpFragment;
+
 
 /**
  * @author Bobo
  * @date 2019/9/21
  * describe 懒加载Fragment基类
  */
-public abstract class BaseLazyFragment extends BaseFragment {
+public abstract class BaseLazyFragment extends AbstractMvpFragment {
 
     /**
      * 懒加载过
