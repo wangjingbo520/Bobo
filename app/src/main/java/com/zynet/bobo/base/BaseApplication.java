@@ -1,4 +1,4 @@
-package com.zynet.bobo;
+package com.zynet.bobo.base;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -8,7 +8,7 @@ import android.util.Log;
 
 import androidx.multidex.MultiDex;
 
-import com.zynet.bobo.base.LoadMultiDexActivity;
+import com.zynet.bobo.MainActivity;
 import com.zynet.bobo.utils.SystemUtil;
 
 import java.io.File;

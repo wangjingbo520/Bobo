@@ -1,6 +1,8 @@
 package com.zynet.bobo;
 
 
+import com.zynet.bobo.base.BaseApplication;
+
 /**
  * @author Bobo
  * @date 2019/9/22
