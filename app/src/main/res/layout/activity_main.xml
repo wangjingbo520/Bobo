@@ -10,15 +10,17 @@
     <com.zynet.bobo.ui.widget.TitleView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/themeColor" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="@color/white" />
 
-    <com.chaychan.library.BottomBarLayout
+    <com.zynet.bobo.ui.widget.bottomview.BottomBarLayout
         android:id="@+id/bbl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -27,7 +29,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.chaychan.library.BottomBarItem
+        <com.zynet.bobo.ui.widget.bottomview.BottomBarItem
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -41,7 +43,7 @@
             app:textColorSelected="@color/themeColor"
             app:touchDrawable="@drawable/selector_bg" />
 
-        <com.chaychan.library.BottomBarItem
+        <com.zynet.bobo.ui.widget.bottomview.BottomBarItem
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -57,7 +59,7 @@
             app:unreadThreshold="999" />
 
 
-        <com.chaychan.library.BottomBarItem
+        <com.zynet.bobo.ui.widget.bottomview.BottomBarItem
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -71,7 +73,7 @@
             app:textColorSelected="@color/tab_selected_color"
             app:touchDrawable="@drawable/selector_bg" />
 
-        <com.chaychan.library.BottomBarItem
+        <com.zynet.bobo.ui.widget.bottomview.BottomBarItem
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -85,7 +87,7 @@
             app:textColorSelected="@color/tab_selected_color"
             app:touchDrawable="@drawable/selector_bg" />
 
-    </com.chaychan.library.BottomBarLayout>
+    </com.zynet.bobo.ui.widget.bottomview.BottomBarLayout>
 
 
 </LinearLayout>

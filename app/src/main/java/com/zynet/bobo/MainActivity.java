@@ -1,9 +1,9 @@
 package com.zynet.bobo;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -14,23 +14,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.chaychan.library.BottomBarItem;
-import com.chaychan.library.BottomBarLayout;
 import com.zynet.bobo.base.SmartFragmentStatePagerAdapter;
 import com.zynet.bobo.ui.fragment.AboutFragment;
 import com.zynet.bobo.ui.fragment.HomeFragment;
 import com.zynet.bobo.ui.fragment.MyFragment;
 import com.zynet.bobo.ui.widget.TitleView;
+import com.zynet.bobo.ui.widget.bottomview.BottomBarItem;
+import com.zynet.bobo.ui.widget.bottomview.BottomBarLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * @author Bobo
@@ -48,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RotateAnimation mRotateAnimation;
 
+    private Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         tvTitle.setBackImageGone(true);
         mFragments.add(new HomeFragment());
         mFragments.add(new AboutFragment());
+        mFragments.add(new MyFragment());
         mFragments.add(new MyFragment());
         viewPager.setCurrentItem(0);
         viewPager.setAdapter(new MyFragmentStateAdapter(getSupportFragmentManager()));
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
 
-                    //     bottomBarItem.setSelectedIcon(R.mipmap.tab_loading);//更换成加载图标
+                    bottomBarItem.setSelectedIcon(R.mipmap.tab_loading);//更换成加载图标
 
                     //播放旋转动画
                     if (mRotateAnimation == null) {
@@ -93,15 +93,15 @@ public class MainActivity extends AppCompatActivity {
                     bottomImageView.setAnimation(mRotateAnimation);
                     bottomImageView.startAnimation(mRotateAnimation);//播放旋转动画
 
-                    //模拟数据刷新完毕
-//                        mHandler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                boolean tabNotChanged = mBottomBarLayout.getCurrentItem() == currentPosition; //是否还停留在当前页签
-//                                bottomBarItem.setSelectedIcon(R.mipmap.tab_home_selected);//更换成首页原来选中图标
-//                                cancelTabLoading(bottomBarItem);
-//                            }
-//                        }, 3000);
+                    //     模拟数据刷新完毕
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            boolean tabNotChanged = mBottomBarLayout.getCurrentItem() == currentPosition; //是否还停留在当前页签
+                            bottomBarItem.setSelectedIcon(R.mipmap.tab_home_selected);//更换成首页原来选中图标
+                            cancelTabLoading(bottomBarItem);
+                        }
+                    }, 3000);
                     return;
                 }
             }
@@ -113,10 +113,14 @@ public class MainActivity extends AppCompatActivity {
             cancelTabLoading(bottomItem);//停止旋转动画
         });
 
-        mBottomBarLayout.setUnread(0, 20);//设置第一个页签的未读数为20
-        mBottomBarLayout.setUnread(1, 1001);//设置第二个页签的未读数
-        mBottomBarLayout.showNotify(2);//设置第三个页签显示提示的小红点
-        mBottomBarLayout.setMsg(3, "NEW");//设置第四个页签显示NEW提示文字
+        //设置第一个页签的未读数为20
+        mBottomBarLayout.setUnread(0, 20);
+        //设置第二个页签的未读数
+        mBottomBarLayout.setUnread(1, 1001);
+        //设置第三个页签显示提示的小红点
+        mBottomBarLayout.showNotify(2);
+        //设置第四个页签显示NEW提示文字
+        mBottomBarLayout.setMsg(3, "NEW");
     }
 
 

@@ -31,7 +31,6 @@ public abstract class AbstractMvpFragment<T1 extends BasePresenter> extends Base
 
     private Unbinder mUnBinder;
 
-
     public FragmentActivity mContext;
 
 
