@@ -1,13 +1,13 @@
 package com.zynet.bobo.mvp.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
 
 import com.zynet.bobo.base.BaseFragment;
 import com.zynet.bobo.base.IBase;

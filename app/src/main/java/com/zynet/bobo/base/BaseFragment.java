@@ -1,9 +1,9 @@
 package com.zynet.bobo.base;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 /**
  * @author Bobo

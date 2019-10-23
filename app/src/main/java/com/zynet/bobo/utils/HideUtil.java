@@ -1,9 +1,10 @@
 package com.zynet.bobo.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author Bobo
@@ -29,7 +29,7 @@ public class HideUtil {
      *
      * @param activity
      */
-    public static void init(Activity activity) {
+    public static void init(AppCompatActivity activity) {
         new HideUtil(activity, null);
     }
 
@@ -39,7 +39,7 @@ public class HideUtil {
      * @param activity
      * @param content
      */
-    public static void init(Activity activity, ViewGroup content) {
+    public static void init(AppCompatActivity activity, ViewGroup content) {
         new HideUtil(activity, content);
     }
 
@@ -58,10 +58,10 @@ public class HideUtil {
      *
      * @param activity
      */
-    public static void hideSoftKeyboard(Activity activity) {
+    public static void hideSoftKeyboard(AppCompatActivity activity) {
         View view = activity.getCurrentFocus();
         if (null != view) {
-            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
@@ -73,7 +73,7 @@ public class HideUtil {
      */
     public static void hideSoftKeyboard(Context context, View view) {
         if (null != view) {
-            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
@@ -81,7 +81,7 @@ public class HideUtil {
     /**
      * @param activity
      */
-    private HideUtil(final Activity activity, ViewGroup content) {
+    private HideUtil(final AppCompatActivity activity, ViewGroup content) {
         if (content == null) {
             content = (ViewGroup) activity.findViewById(android.R.id.content);
         }
@@ -111,7 +111,7 @@ public class HideUtil {
         });
     }
 
-    private void getScrollView(ViewGroup viewGroup, final Activity activity) {
+    private void getScrollView(ViewGroup viewGroup, final AppCompatActivity activity) {
         if (null == viewGroup) {
             return;
         }
@@ -229,7 +229,7 @@ public class HideUtil {
      * @param ev
      * @return
      */
-    public boolean dispatchTouchEvent(Activity mActivity, MotionEvent ev) {
+    public boolean dispatchTouchEvent(AppCompatActivity mActivity, MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             View v = mActivity.getCurrentFocus();
             if (null != v && isShouldHideInput(v, ev)) {
@@ -274,7 +274,7 @@ public class HideUtil {
      * @param mActivity
      * @param token
      */
-    private void hideSoftInput(Activity mActivity, IBinder token) {
+    private void hideSoftInput(AppCompatActivity mActivity, IBinder token) {
         if (token != null) {
             InputMethodManager im = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -292,7 +292,7 @@ public class HideUtil {
         }
     }
 
-    public void registerSoftInputListener(Activity context) {
+    public void registerSoftInputListener(AppCompatActivity context) {
         final View content = (ViewGroup) context.findViewById(android.R.id.content);
         content.getViewTreeObserver().
                 addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

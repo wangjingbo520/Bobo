@@ -2,6 +2,11 @@ package com.zynet.bobo;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.animation.Animation;
@@ -10,12 +15,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.ViewPager;
 
-import com.zynet.bobo.base.SmartFragmentStatePagerAdapter;
 import com.zynet.bobo.ui.fragment.AboutFragment;
 import com.zynet.bobo.ui.fragment.HomeFragment;
 import com.zynet.bobo.ui.fragment.MyFragment;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         mFragments.add(new AboutFragment());
         mFragments.add(new MyFragment());
         mFragments.add(new MyFragment());
-        viewPager.setCurrentItem(0);
+       // viewPager.setCurrentItem(2);
         viewPager.setAdapter(new MyFragmentStateAdapter(getSupportFragmentManager()));
         //  viewPager.setOffscreenPageLimit(3);
         mBottomBarLayout.setViewPager(viewPager);
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    class MyFragmentStateAdapter extends SmartFragmentStatePagerAdapter {
+    class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
 
         public MyFragmentStateAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);

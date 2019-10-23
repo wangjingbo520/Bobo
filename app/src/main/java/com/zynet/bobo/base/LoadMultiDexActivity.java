@@ -3,10 +3,10 @@ package com.zynet.bobo.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Process;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.multidex.MultiDex;
 
 import com.zynet.bobo.R;

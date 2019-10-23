@@ -11,16 +11,15 @@ ext {
     ]
 
     dependVersion = [
-            supportX: "1.1.0",
-            support: "28.0.0"
+            support: "28.0.0",
     ]
 
     dependencies = [
             //android-support
-            "appcompax"            : "androidx.appcompat:appcompat:${dependVersion.supportX}",
+            "appcompat-v7"            : "com.android.support:appcompat-v7:${dependVersion.support}",
 //            "annotations"             : "com.android.support:support-annotations:${dependVersion.support}",
 //            "design"                  : "com.android.support:design:${dependVersion.support}",
-//            "recyclerview"            : "com.android.support:recyclerview-v7:${dependVersion.support}",
+            "recyclerview"            : "com.android.support:recyclerview-v7:${dependVersion.support}",
 
             //ui
             "butterknife"             : "com.jakewharton:butterknife:10.2.0",
