@@ -157,6 +157,27 @@ public class MainActivity extends AppCompatActivity {
             return mFragments.size();
         }
     }
+    
+    
+    mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        
+    }
+    @Override
+    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        super.onScrollStateChanged(recyclerView, newState);
+        switch (newState) {
+            //当屏幕滚动且用户使用的触碰或手指还在屏幕上，停止加载图片
+            case RecyclerView.SCROLL_STATE_DRAGGING:
+                //由于用户的操作，屏幕产生惯性滑动，停止加载图片
+            case RecyclerView.SCROLL_STATE_SETTLING:
+                Glide.with(getActivity()).pauseRequests();
+                break;
+            case RecyclerView.SCROLL_STATE_IDLE:
+                Glide.with(getActivity()).resumeRequests();
+        }
+    }
+});
 
 
 }
