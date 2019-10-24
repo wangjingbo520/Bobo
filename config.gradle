@@ -22,8 +22,12 @@ ext {
             "recyclerview"            : "com.android.support:recyclerview-v7:${dependVersion.support}",
 
             //ui
-            "butterknife"             : "com.jakewharton:butterknife:10.2.0",
-            "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:10.2.0",
+//            "butterknife"             : "com.jakewharton:butterknife:10.2.0",
+//            "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:10.2.0",
+
+
+            "butterknife"             : "com.jakewharton:butterknife:8.8.1",
+            "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:8.8.1",
 
             "permissionsdispatcher"   : "com.github.hotchemi:permissionsdispatcher:3.1.0",
             "permissionsprocessor"    : "com.github.hotchemi:permissionsdispatcher-processor:3.1.0",

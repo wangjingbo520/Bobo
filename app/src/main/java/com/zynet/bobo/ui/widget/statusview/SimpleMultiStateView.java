@@ -2,9 +2,8 @@ package com.zynet.bobo.ui.widget.statusview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
-
-import androidx.annotation.LayoutRes;
 
 import com.zynet.bobo.R;
 

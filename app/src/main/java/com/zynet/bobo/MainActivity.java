@@ -13,8 +13,6 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.zynet.bobo.ui.fragment.AboutFragment;
 import com.zynet.bobo.ui.fragment.HomeFragment;
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler mHandler = new Handler();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             super(fragmentManager);
         }
 
-        @NonNull
+
         @Override
         public Fragment getItem(int position) {
             return mFragments.get(position);
@@ -159,25 +157,27 @@ public class MainActivity extends AppCompatActivity {
     }
     
     
-    mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-        
-    }
-    @Override
-    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-        super.onScrollStateChanged(recyclerView, newState);
-        switch (newState) {
-            //当屏幕滚动且用户使用的触碰或手指还在屏幕上，停止加载图片
-            case RecyclerView.SCROLL_STATE_DRAGGING:
-                //由于用户的操作，屏幕产生惯性滑动，停止加载图片
-            case RecyclerView.SCROLL_STATE_SETTLING:
-                Glide.with(getActivity()).pauseRequests();
-                break;
-            case RecyclerView.SCROLL_STATE_IDLE:
-                Glide.with(getActivity()).resumeRequests();
-        }
-    }
-});
+//    mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+//
+//    {
+//        public void onScrolled (RecyclerView recyclerView,int dx, int dy){
+//
+//    }
+//        @Override
+//        public void onScrollStateChanged (RecyclerView recyclerView,int newState){
+//        super.onScrollStateChanged(recyclerView, newState);
+//        switch (newState) {
+//            //当屏幕滚动且用户使用的触碰或手指还在屏幕上，停止加载图片
+//            case RecyclerView.SCROLL_STATE_DRAGGING:
+//                //由于用户的操作，屏幕产生惯性滑动，停止加载图片
+//            case RecyclerView.SCROLL_STATE_SETTLING:
+//                Glide.with(getActivity()).pauseRequests();
+//                break;
+//            case RecyclerView.SCROLL_STATE_IDLE:
+//                Glide.with(getActivity()).resumeRequests();
+//        }
+//    }
+//});
 
 
 }

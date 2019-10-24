@@ -1,16 +1,15 @@
 package com.zynet.bobo.mvp.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
-
 import com.zynet.bobo.base.BaseActivity;
-import com.zynet.bobo.mvp.presenter.BasePresenter;
 import com.zynet.bobo.base.IBase;
 import com.zynet.bobo.base.IBaseView;
+import com.zynet.bobo.mvp.presenter.BasePresenter;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

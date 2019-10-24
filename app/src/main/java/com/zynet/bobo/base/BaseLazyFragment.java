@@ -2,8 +2,7 @@ package com.zynet.bobo.base;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.UiThread;
+import android.support.annotation.UiThread;
 
 import com.zynet.bobo.mvp.ui.AbstractMvpFragment;
 
