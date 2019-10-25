@@ -2,20 +2,19 @@ package com.zynet.bobo.ui.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.zynet.bobo.R;
 import com.zynet.bobo.base.BaseLazyFragment;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
 import com.zynet.bobo.constant.MyConfig;
-import com.zynet.bobo.mvc.http.okhttp.CallBackUtil;
-import com.zynet.bobo.mvc.http.okhttp.OkhttpUtil;
+import com.zynet.bobo.mvc.http.okhttputils.JsonGenericsSerializator;
+import com.zynet.bobo.mvc.http.okhttputils.OkHttpUtils;
+import com.zynet.bobo.mvc.http.okhttputils.callback.GenericsCallback;
 import com.zynet.bobo.mvp.presenter.BasePresenter;
 
 import butterknife.BindView;
@@ -43,20 +42,39 @@ public class HomeFragment extends BaseLazyFragment {
 
     private void getData() {
         String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
-        OkhttpUtil.okHttpGet(mContext, url, new CallBackUtil.CallBackString() {
-            @Override
-            public void onFailure(Call call, Exception e) {
-            }
+        OkHttpUtils
+                .get()
+                .url(url)
+                .build()
+                .execute(new GenericsCallback<TestBean>(new JsonGenericsSerializator()) {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        //   mTv.setText("onError:" + e.getMessage());
+                    }
 
-            @Override
-            public void onResponse(String response) {
-                showContent();
-                Log.i("--->", response);
-                recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-                recyclerView.setAdapter(new MyAdapter(new Gson().fromJson(response, TestBean.class)));
-            }
-        }, true);
+                    @Override
+                    public void onResponse(TestBean response, int id) {
+                        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+                        recyclerView.setAdapter(new MyAdapter(response));
+                        // mTv.setText("onResponse:" + response.username);
+                    }
+                });
+//        OkhttpUtil.okHttpGet(mContext, url, new CallBackUtil.CallBackString() {
+//            @Override
+//            public void onFailure(Call call, Exception e) {
+//                showFaild();
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                showContent();
+//                Log.i("--->", response);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+//                recyclerView.setAdapter(new MyAdapter(new Gson().fromJson(response, TestBean.class)));
+//            }
+//        }, false);
     }
+
 
     @Override
     public void onLazyLoad() {
