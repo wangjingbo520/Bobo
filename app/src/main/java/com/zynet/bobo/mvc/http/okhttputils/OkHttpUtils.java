@@ -18,8 +18,11 @@ import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
+
 /**
- * Created by zhy on 15/8/17.
+ * @author Bobo
+ * @date 2019/9/21
+ * describe
  */
 public class OkHttpUtils {
     public static final long DEFAULT_MILLISECONDS = 10_000L;
