@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
  * describe
  */
 public abstract class BaseFragment extends Fragment {
+    public final static String TAG = BaseFragment.class.getSimpleName();
     public Context mContext;
     protected ProgressDialog mLoadingDialog = null;
 

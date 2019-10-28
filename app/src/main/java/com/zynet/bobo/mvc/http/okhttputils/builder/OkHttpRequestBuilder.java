@@ -1,6 +1,8 @@
 package com.zynet.bobo.mvc.http.okhttputils.builder;
 
 
+import android.util.Log;
+
 import com.zynet.bobo.mvc.http.okhttputils.request.RequestCall;
 
 import java.util.LinkedHashMap;
@@ -23,6 +25,7 @@ public abstract class OkHttpRequestBuilder<T extends OkHttpRequestBuilder> {
 
     public T url(String url) {
         this.url = url;
+        Log.e("---->", url);
         return (T) this;
     }
 

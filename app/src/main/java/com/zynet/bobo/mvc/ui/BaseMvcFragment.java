@@ -1,5 +1,7 @@
 package com.zynet.bobo.mvc.ui;
 
+import android.util.Log;
+
 import com.zynet.bobo.base.BaseFragment;
 import com.zynet.bobo.constant.MyConfig;
 import com.zynet.bobo.mvc.http.okhttputils.JsonGenericsSerializator;
@@ -21,6 +23,7 @@ public abstract class BaseMvcFragment extends BaseFragment {
             @Override
             public void onError(Call call, Exception e, int id) {
                 dissmissDialog();
+                Log.e(TAG, "onError: " + e.getMessage());
             }
 
             @Override
