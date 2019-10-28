@@ -5,10 +5,12 @@ import java.lang.reflect.ParameterizedType;
 
 import okhttp3.Response;
 
-/**
- * Created by JimGong on 2016/6/23.
- */
 
+/**
+ * @author Bobo
+ * @date 2019/9/21
+ * describe
+ */
 public abstract class GenericsCallback<T> extends Callback<T> {
     IGenericsSerializator mGenericsSerializator;
 

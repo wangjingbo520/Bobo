@@ -11,13 +11,8 @@ import com.zynet.bobo.R;
 import com.zynet.bobo.base.BaseLazyLoadFragment;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
-import com.zynet.bobo.constant.MyConfig;
-import com.zynet.bobo.mvc.http.okhttputils.JsonGenericsSerializator;
-import com.zynet.bobo.mvc.http.okhttputils.OkHttpUtils;
-import com.zynet.bobo.mvc.http.okhttputils.callback.GenericsCallback;
 
-import okhttp3.Call;
-import okhttp3.Request;
+import butterknife.BindView;
 
 /**
  * @author Bobo
@@ -25,31 +20,12 @@ import okhttp3.Request;
  * describe 首页
  */
 public class HomeFragment extends BaseLazyLoadFragment {
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    private String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
 
     private void getData() {
-        OkHttpUtils.get().url(url).build().execute(new GenericsCallback<TestBean>(new JsonGenericsSerializator()) {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                //   mTv.setText("onError:" + e.getMessage());
-            }
-
-            @Override
-            public void onResponse(TestBean response, int id) {
-                dissmissDialog();
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                recyclerView.setAdapter(new MyAdapter(response));
-            }
-
-            @Override
-            public void onBefore(Request request, int id) {
-                super.onBefore(request, id);
-                showLoadingDialog();
-            }
-        });
+        this.<TestBean>getData(InterfaceMethod.MAIN);
     }
-
 
     @Override
     protected void loadData() {
@@ -60,11 +36,18 @@ public class HomeFragment extends BaseLazyLoadFragment {
     public void initViews(View view) {
         super.initViews(view);
         recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
     @Override
     protected int getContentLayout() {
         return R.layout.fragment_home;
+    }
+
+    @Override
+    protected <T> void onSucess(T response) {
+        TestBean testBean = (TestBean) response;
+        recyclerView.setAdapter(new MyAdapter(testBean));
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {

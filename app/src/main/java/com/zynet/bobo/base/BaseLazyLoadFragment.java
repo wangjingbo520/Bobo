@@ -3,12 +3,14 @@ package com.zynet.bobo.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.zynet.bobo.mvc.ui.BaseMvcFragment;
+
 /**
  * @author Bobo
  * @date 2019/10/28 0028
  * describe
  */
-public abstract class BaseLazyLoadFragment extends BaseFragment {
+public abstract class BaseLazyLoadFragment extends BaseMvcFragment {
     /**
      * // 界面是否已创建完成
      */
