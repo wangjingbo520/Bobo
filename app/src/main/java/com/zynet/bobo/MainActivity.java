@@ -3,8 +3,6 @@ package com.zynet.bobo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,7 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-
+import com.zynet.bobo.adapter.MyFragmentStateAdapter;
 import com.zynet.bobo.ui.fragment.AboutFragment;
 import com.zynet.bobo.ui.fragment.HomeFragment;
 import com.zynet.bobo.ui.fragment.MyFragment;
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler mHandler = new Handler();
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -61,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
         mFragments.add(new AboutFragment());
         mFragments.add(new MyFragment());
         mFragments.add(new MyFragment());
-       // viewPager.setCurrentItem(2);
-        viewPager.setAdapter(new MyFragmentStateAdapter(getSupportFragmentManager()));
+        // viewPager.setCurrentItem(2);
+        viewPager.setAdapter(new MyFragmentStateAdapter(getSupportFragmentManager(), mFragments));
         //  viewPager.setOffscreenPageLimit(3);
+
+        viewPager.setOffscreenPageLimit(3);
         mBottomBarLayout.setViewPager(viewPager);
         mBottomBarLayout.setSmoothScroll(true);
 
@@ -138,25 +138,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    class MyFragmentStateAdapter extends FragmentStatePagerAdapter {
 
-        public MyFragmentStateAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-    }
-    
-    
 //    mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
 //
 //    {

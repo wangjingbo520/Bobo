@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zynet.bobo.base.BaseActivity;
-import com.zynet.bobo.base.IBase;
 import com.zynet.bobo.base.IBaseView;
 import com.zynet.bobo.mvp.presenter.BasePresenter;
 
@@ -20,7 +19,7 @@ import butterknife.Unbinder;
  * describe
  */
 public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends BaseActivity
-        implements IBaseView, IBase {
+        implements IBaseView {
     protected View mRootView;
 
     protected T1 mPresenter;
@@ -40,27 +39,18 @@ public abstract class AbstractMvpBaseActivity<T1 extends BasePresenter> extends 
 
     }
 
-    @Override
-    public void initView(View view, Bundle savedInstanceState) {
+    protected abstract void initData();
 
-    }
+    public abstract void initView(View view, Bundle savedInstanceState);
 
-    @Override
-    public void initData() {
 
-    }
-
-    @Override
-    public View getView() {
-        return mRootView;
-    }
-
-    @Override
     public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(getContentLayout(), container);
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
+
+    protected abstract int getContentLayout();
 
 
     /**

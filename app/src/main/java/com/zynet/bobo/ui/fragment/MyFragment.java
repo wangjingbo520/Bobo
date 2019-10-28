@@ -11,13 +11,14 @@ import com.zynet.bobo.mvp.ui.AbstractMvpFragment;
  * describe
  */
 public class MyFragment extends AbstractMvpFragment {
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_my;
-    }
 
     @Override
     protected BasePresenter createPresenter() {
         return null;
+    }
+
+    @Override
+    protected int getContentLayout() {
+        return R.layout.fragment_my;
     }
 }

@@ -35,9 +35,9 @@ public class BaseApplication extends Application {
         Log.d(TAG, "attachBaseContext-isMainProcess: " + isMainProcess);
 
         //主进程并且vm不支持多dex的情况下才使用 MultiDex
-        if (isMainProcess && !SystemUtil.isVMMultidexCapable()) {
-            loadMultiDex(base);
-        }
+//        if (isMainProcess && !SystemUtil.isVMMultidexCapable()) {
+//            loadMultiDex(base);
+//        }
     }
 
     private boolean isMainProcess(Context context) {
@@ -47,10 +47,10 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (!isMainProcess(this)) {
-            Log.d(TAG, "onCreate: 非主进程，return");
-            return;
-        }
+//        if (!isMainProcess(this)) {
+//            Log.d(TAG, "onCreate: 非主进程，return");
+//            return;
+//        }
 
         Log.d(TAG, "主进程 onCreate: 一些初始化操作");
     }

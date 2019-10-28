@@ -8,78 +8,63 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zynet.bobo.R;
-import com.zynet.bobo.base.BaseLazyFragment;
+import com.zynet.bobo.base.BaseLazyLoadFragment;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
 import com.zynet.bobo.constant.MyConfig;
 import com.zynet.bobo.mvc.http.okhttputils.JsonGenericsSerializator;
 import com.zynet.bobo.mvc.http.okhttputils.OkHttpUtils;
 import com.zynet.bobo.mvc.http.okhttputils.callback.GenericsCallback;
-import com.zynet.bobo.mvp.presenter.BasePresenter;
 
-import butterknife.BindView;
 import okhttp3.Call;
+import okhttp3.Request;
 
 /**
  * @author Bobo
  * @date 2019/9/22 0022
  * describe 首页
  */
-public class HomeFragment extends BaseLazyFragment {
-    @BindView(R.id.recyclerView)
+public class HomeFragment extends BaseLazyLoadFragment {
     RecyclerView recyclerView;
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_home;
-    }
-
-    @Override
-    protected BasePresenter createPresenter() {
-        return null;
-    }
-
+    private String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
 
     private void getData() {
-        String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
-        OkHttpUtils
-                .get()
-                .url(url)
-                .build()
-                .execute(new GenericsCallback<TestBean>(new JsonGenericsSerializator()) {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        //   mTv.setText("onError:" + e.getMessage());
-                    }
+        OkHttpUtils.get().url(url).build().execute(new GenericsCallback<TestBean>(new JsonGenericsSerializator()) {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                //   mTv.setText("onError:" + e.getMessage());
+            }
 
-                    @Override
-                    public void onResponse(TestBean response, int id) {
-                        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-                        recyclerView.setAdapter(new MyAdapter(response));
-                        // mTv.setText("onResponse:" + response.username);
-                    }
-                });
-//        OkhttpUtil.okHttpGet(mContext, url, new CallBackUtil.CallBackString() {
-//            @Override
-//            public void onFailure(Call call, Exception e) {
-//                showFaild();
-//            }
-//
-//            @Override
-//            public void onResponse(String response) {
-//                showContent();
-//                Log.i("--->", response);
-//                recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-//                recyclerView.setAdapter(new MyAdapter(new Gson().fromJson(response, TestBean.class)));
-//            }
-//        }, false);
+            @Override
+            public void onResponse(TestBean response, int id) {
+                dissmissDialog();
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(new MyAdapter(response));
+            }
+
+            @Override
+            public void onBefore(Request request, int id) {
+                super.onBefore(request, id);
+                showLoadingDialog();
+            }
+        });
     }
 
 
     @Override
-    public void onLazyLoad() {
+    protected void loadData() {
         getData();
+    }
 
+    @Override
+    public void initViews(View view) {
+        super.initViews(view);
+        recyclerView = view.findViewById(R.id.recyclerView);
+    }
+
+    @Override
+    protected int getContentLayout() {
+        return R.layout.fragment_home;
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
@@ -92,7 +77,7 @@ public class HomeFragment extends BaseLazyFragment {
 
         @Override
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.recy_item, parent, false);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.recy_item, parent, false);
             return new MyHolder(view);
         }
 

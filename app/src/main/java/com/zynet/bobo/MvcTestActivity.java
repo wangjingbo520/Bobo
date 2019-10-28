@@ -2,25 +2,19 @@ package com.zynet.bobo;
 
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
 import com.zynet.bobo.constant.MyConfig;
-import com.zynet.bobo.mvc.http.okhttp.CallBackUtil;
-import com.zynet.bobo.mvc.http.okhttp.OkhttpUtil;
 import com.zynet.bobo.mvc.ui.BaseMvcActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
 
 
 /**
@@ -49,19 +43,19 @@ public class MvcTestActivity extends BaseMvcActivity {
 
     private void okHttpTest() {
         String url = MyConfig.BASE_URL + InterfaceMethod.MAIN;
-        OkhttpUtil.okHttpGet(this, url, new CallBackUtil.CallBackString() {
-            @Override
-            public void onFailure(Call call, Exception e) {
-            }
-
-            @Override
-            public void onResponse(String response) {
-                showContent();
-                Log.i("--->", response);
-                recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-                recyclerView.setAdapter(new MyAdapter(new Gson().fromJson(response, TestBean.class)));
-            }
-        }, false);
+//        OkhttpUtil.okHttpGet(this, url, new CallBackUtil.CallBackString() {
+//            @Override
+//            public void onFailure(Call call, Exception e) {
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                showContent();
+//                Log.i("--->", response);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+//                recyclerView.setAdapter(new MyAdapter(new Gson().fromJson(response, TestBean.class)));
+//            }
+//        }, false);
     }
 
     private void volleyHttpTest() {

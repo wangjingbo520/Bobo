@@ -1,5 +1,7 @@
 package com.zynet.bobo;
 
+import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.zynet.bobo.mvp.ui.AbstractMvpBaseActivity;
@@ -19,9 +21,7 @@ import butterknife.OnClick;
  * describe 测试使用的
  */
 public class MvpTestActivity extends AbstractMvpBaseActivity<HomePresenter> implements IHomeView {
-
     private int size = 0;
-
 
     @BindView(R.id.tvContent)
     TextView tvContent;
@@ -34,6 +34,16 @@ public class MvpTestActivity extends AbstractMvpBaseActivity<HomePresenter> impl
     @Override
     protected HomePresenter createPresenter() {
         return new HomePresenter(this, this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public void initView(View view, Bundle savedInstanceState) {
+
     }
 
     @Override
