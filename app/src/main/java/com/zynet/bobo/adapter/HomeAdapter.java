@@ -1,8 +1,10 @@
 package com.zynet.bobo.adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.zynet.bobo.R;
+import com.zynet.bobo.adapter.base.BaseQuickAdapter;
+import com.zynet.bobo.adapter.base.BaseViewHolder;
 import com.zynet.bobo.bean.TestBean;
 
 /**
@@ -10,15 +12,15 @@ import com.zynet.bobo.bean.TestBean;
  * @date 2019/11/2 0002
  * describe 测试封装的适配器
  */
-public class HomeAdapter extends BaseRecyclerAdapter<TestBean.DataBean> {
+public class HomeAdapter extends BaseQuickAdapter<TestBean.DataBean, BaseViewHolder> {
 
-    public HomeAdapter(Context mContext, int layoutId) {
-        super(mContext, layoutId);
+    public HomeAdapter(int layoutResId) {
+        super(layoutResId);
     }
 
     @Override
-    protected void bindData(BaseViewHolder holder, int position, TestBean.DataBean dataBean) {
-        setItemText(holder.getView(R.id.tvContent), dataBean.toString());
+    protected void convert(@NonNull BaseViewHolder helper, TestBean.DataBean item) {
+        helper.setText(R.id.tvContent, item.toString());
+        helper.addOnClickListener(R.id.btnDelete);
     }
-
 }
