@@ -97,7 +97,9 @@ public class HomeFragment extends BaseLazyLoadFragment implements BaseRecyclerVi
             @Override
             public void onBefore(Request request, int id) {
                 super.onBefore(request, id);
-                //     showLoadingDialog();
+                if (currentPage == 1) {
+                    showLoadingDialog();
+                }
             }
         });
     }

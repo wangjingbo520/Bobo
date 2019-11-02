@@ -40,7 +40,11 @@ public class AboutFragment extends BaseLazyLoadFragment {
     private void initData() {
         String[] imags = mContext.getResources().getStringArray(R.array.imags);
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
-        recyclerView.setAdapter(new MyAdapter(imags));
+        showLoadingDialog();
+        new android.os.Handler().postDelayed(() -> {
+            recyclerView.setAdapter(new MyAdapter(imags));
+            dissmissDialog();
+        }, 2000);
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
