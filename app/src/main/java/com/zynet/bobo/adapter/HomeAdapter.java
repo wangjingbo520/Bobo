@@ -3,7 +3,7 @@ package com.zynet.bobo.adapter;
 import android.support.annotation.NonNull;
 
 import com.zynet.bobo.R;
-import com.zynet.bobo.adapter.base.BaseQuickAdapter;
+import com.zynet.bobo.adapter.base.BaseRecyclerViewAdapter;
 import com.zynet.bobo.adapter.base.BaseViewHolder;
 import com.zynet.bobo.bean.TestBean;
 
@@ -12,7 +12,7 @@ import com.zynet.bobo.bean.TestBean;
  * @date 2019/11/2 0002
  * describe 测试封装的适配器
  */
-public class HomeAdapter extends BaseQuickAdapter<TestBean.DataBean, BaseViewHolder> {
+public class HomeAdapter extends BaseRecyclerViewAdapter<TestBean.DataBean, BaseViewHolder> {
 
     public HomeAdapter(int layoutResId) {
         super(layoutResId);

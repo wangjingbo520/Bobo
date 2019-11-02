@@ -12,9 +12,9 @@ import android.support.v7.util.ListUpdateCallback;
 public final class BaseQuickAdapterListUpdateCallback implements ListUpdateCallback {
 
     @NonNull
-    private final BaseQuickAdapter mAdapter;
+    private final BaseRecyclerViewAdapter mAdapter;
 
-    public BaseQuickAdapterListUpdateCallback(@NonNull BaseQuickAdapter adapter) {
+    public BaseQuickAdapterListUpdateCallback(@NonNull BaseRecyclerViewAdapter adapter) {
         this.mAdapter = adapter;
     }
 

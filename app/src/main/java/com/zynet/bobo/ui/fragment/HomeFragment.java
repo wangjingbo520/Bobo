@@ -3,13 +3,14 @@ package com.zynet.bobo.ui.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.zynet.bobo.R;
 import com.zynet.bobo.adapter.HomeAdapter;
-import com.zynet.bobo.adapter.base.BaseQuickAdapter;
+import com.zynet.bobo.adapter.base.BaseRecyclerViewAdapter;
 import com.zynet.bobo.base.BaseLazyLoadFragment;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
@@ -27,7 +28,7 @@ import okhttp3.Request;
  * @date 2019/9/22 0022
  * describe 首页
  */
-public class HomeFragment extends BaseLazyLoadFragment implements BaseQuickAdapter.OnItemChildClickListener {
+public class HomeFragment extends BaseLazyLoadFragment implements BaseRecyclerViewAdapter.OnItemChildClickListener {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
@@ -49,6 +50,8 @@ public class HomeFragment extends BaseLazyLoadFragment implements BaseQuickAdapt
         refreshLayout.setRefreshHeader(new ClassicsHeader(mContext));
         homeAdapter = new HomeAdapter(R.layout.recy_item);
         homeAdapter.setOnItemChildClickListener(this);
+        View inflate = LayoutInflater.from(mContext).inflate(R.layout.headview, null);
+        homeAdapter.addHeaderView(inflate);
 
         recyclerView.setAdapter(homeAdapter);
         refreshLayout.setOnRefreshListener(refresh -> {
@@ -59,6 +62,7 @@ public class HomeFragment extends BaseLazyLoadFragment implements BaseQuickAdapt
             currentPage++;
             loadData();
         });
+
     }
 
     @Override
@@ -98,7 +102,7 @@ public class HomeFragment extends BaseLazyLoadFragment implements BaseQuickAdapt
     }
 
     @Override
-    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+    public void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position) {
         if (view.getId() == R.id.btnDelete) {
             homeAdapter.remove(position);
         }

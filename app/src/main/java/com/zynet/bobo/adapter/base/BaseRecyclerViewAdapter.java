@@ -38,7 +38,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Constructor;
@@ -55,9 +54,11 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 
 /**
- * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+ * @author Bobo
+ * @date 2019/9/21
+ * describe
  */
-public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends RecyclerView.Adapter<K> {
+public abstract class BaseRecyclerViewAdapter<T, K extends BaseViewHolder> extends RecyclerView.Adapter<K> {
 
     //load more
     private boolean mNextLoadEnable = false;
@@ -109,7 +110,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     private boolean mHeadAndEmptyEnable;
     private boolean mFootAndEmptyEnable;
 
-    protected static final String TAG = BaseQuickAdapter.class.getSimpleName();
+    protected static final String TAG = BaseRecyclerViewAdapter.class.getSimpleName();
     protected Context mContext;
     protected int mLayoutResId;
     protected LayoutInflater mLayoutInflater;
@@ -475,18 +476,18 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
      * @param layoutResId The layout resource id of each item.
      * @param data        A new list is created out of this one to avoid mutable list
      */
-    public BaseQuickAdapter(@LayoutRes int layoutResId, @Nullable List<T> data) {
+    public BaseRecyclerViewAdapter(@LayoutRes int layoutResId, @Nullable List<T> data) {
         this.mData = data == null ? new ArrayList<T>() : data;
         if (layoutResId != 0) {
             this.mLayoutResId = layoutResId;
         }
     }
 
-    public BaseQuickAdapter(@Nullable List<T> data) {
+    public BaseRecyclerViewAdapter(@Nullable List<T> data) {
         this(0, data);
     }
 
-    public BaseQuickAdapter(@LayoutRes int layoutResId) {
+    public BaseRecyclerViewAdapter(@LayoutRes int layoutResId) {
         this(layoutResId, null);
     }
 
@@ -551,7 +552,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
             setNewData(newData);
             return;
         }
-        diffResult.dispatchUpdatesTo(new BaseQuickAdapterListUpdateCallback(BaseQuickAdapter.this));
+        diffResult.dispatchUpdatesTo(new BaseQuickAdapterListUpdateCallback(BaseRecyclerViewAdapter.this));
         mData = newData;
     }
 
@@ -1105,7 +1106,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
      * @param position
      */
     public void setOnItemClick(View v, int position) {
-        getOnItemClickListener().onItemClick(BaseQuickAdapter.this, v, position);
+        getOnItemClickListener().onItemClick(BaseRecyclerViewAdapter.this, v, position);
     }
 
     /**
@@ -1116,7 +1117,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
      * @return
      */
     public boolean setOnItemLongClick(View v, int position) {
-        return getOnItemLongClickListener().onItemLongClick(BaseQuickAdapter.this, v, position);
+        return getOnItemLongClickListener().onItemLongClick(BaseRecyclerViewAdapter.this, v, position);
     }
 
     protected K onCreateDefViewHolder(ViewGroup parent, int viewType) {
@@ -1533,7 +1534,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
     }
 
     /**
-     * When the current adapter is empty, the BaseQuickAdapter can display a special view
+     * When the current adapter is empty, the BaseRecyclerViewAdapter can display a special view
      * called the empty view. The empty view is used to provide feedback to the user
      * that no data is available in this AdapterView.
      *
@@ -1709,7 +1710,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
      * Optional implementation this method and use the helper to adapt the view to the given item.
      * <p>
      * If {@link DiffUtil.Callback#getChangePayload(int, int)} is implemented,
-     * then {@link BaseQuickAdapter#convert(BaseViewHolder, Object)} will not execute, and will
+     * then {@link BaseRecyclerViewAdapter#convert(BaseViewHolder, Object)} will not execute, and will
      * perform this method, Please implement this method for partial refresh.
      * <p>
      * If use {@link RecyclerView.Adapter#notifyItemChanged(int, Object)} with payload,
@@ -2050,7 +2051,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
          * @param view     The view whihin the ItemView that was clicked
          * @param position The position of the view int the adapter
          */
-        void onItemChildClick(BaseQuickAdapter adapter, View view, int position);
+        void onItemChildClick(BaseRecyclerViewAdapter adapter, View view, int position);
     }
 
 
@@ -2063,12 +2064,12 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
          * callback method to be invoked when an item in this view has been
          * click and held
          *
-         * @param adapter  this BaseQuickAdapter adapter
+         * @param adapter  this BaseRecyclerViewAdapter adapter
          * @param view     The childView whihin the itemView that was clicked and held.
          * @param position The position of the view int the adapter
          * @return true if the callback consumed the long click ,false otherwise
          */
-        boolean onItemChildLongClick(BaseQuickAdapter adapter, View view, int position);
+        boolean onItemChildLongClick(BaseRecyclerViewAdapter adapter, View view, int position);
     }
 
     /**
@@ -2085,7 +2086,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
          * @param position The position of the view int the adapter
          * @return true if the callback consumed the long click ,false otherwise
          */
-        boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position);
+        boolean onItemLongClick(BaseRecyclerViewAdapter adapter, View view, int position);
     }
 
 
@@ -2104,7 +2105,7 @@ public abstract class BaseQuickAdapter<T, K extends BaseViewHolder> extends Recy
          *                 will be a view provided by the adapter)
          * @param position The position of the view in the adapter.
          */
-        void onItemClick(BaseQuickAdapter adapter, View view, int position);
+        void onItemClick(BaseRecyclerViewAdapter adapter, View view, int position);
     }
 
     /**
