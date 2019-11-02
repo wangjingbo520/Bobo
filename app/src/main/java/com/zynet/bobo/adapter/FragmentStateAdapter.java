@@ -12,10 +12,10 @@ import java.util.List;
  * @date 2019/10/28 0028
  * describe
  */
-public class MyFragmentStateAdapter extends SmartFragmentStatePagerAdapter {
+public class FragmentStateAdapter extends SmartFragmentStatePagerAdapter {
     private List<Fragment> fragmentList;
 
-    public MyFragmentStateAdapter(FragmentManager fragmentManager, List<Fragment> fragmentList) {
+    public FragmentStateAdapter(FragmentManager fragmentManager, List<Fragment> fragmentList) {
         super(fragmentManager);
         this.fragmentList = fragmentList;
     }

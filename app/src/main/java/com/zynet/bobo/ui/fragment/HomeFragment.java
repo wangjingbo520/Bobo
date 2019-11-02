@@ -8,7 +8,8 @@ import android.view.View;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.zynet.bobo.R;
-import com.zynet.bobo.adapter.HomeFragmentAdapter;
+import com.zynet.bobo.adapter.BaseRecyclerAdapter;
+import com.zynet.bobo.adapter.HomeAdapter;
 import com.zynet.bobo.base.BaseLazyLoadFragment;
 import com.zynet.bobo.bean.TestBean;
 import com.zynet.bobo.constant.InterfaceMethod;
@@ -16,6 +17,9 @@ import com.zynet.bobo.constant.MyConfig;
 import com.zynet.bobo.mvc.http.okhttputils.JsonGenericsSerializator;
 import com.zynet.bobo.mvc.http.okhttputils.OkHttpUtils;
 import com.zynet.bobo.mvc.http.okhttputils.callback.GenericsCallback;
+import com.zynet.bobo.utils.ToastUtil;
+
+import java.util.List;
 
 import butterknife.BindView;
 import okhttp3.Call;
@@ -26,14 +30,14 @@ import okhttp3.Request;
  * @date 2019/9/22 0022
  * describe 首页
  */
-public class HomeFragment extends BaseLazyLoadFragment {
+public class HomeFragment extends BaseLazyLoadFragment implements BaseRecyclerAdapter.OnItemClickListner {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     private int currentPage = 1;
 
-    private HomeFragmentAdapter homeFragmentAdapter;
+    private HomeAdapter homeAdapter;
 
     @Override
     protected void loadData() {
@@ -46,8 +50,9 @@ public class HomeFragment extends BaseLazyLoadFragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         refreshLayout.setRefreshHeader(new ClassicsHeader(mContext));
-        homeFragmentAdapter = new HomeFragmentAdapter(mContext);
-        recyclerView.setAdapter(homeFragmentAdapter);
+        homeAdapter = new HomeAdapter(mContext, R.layout.recy_item);
+        homeAdapter.setOnItemClickListner(this);
+        recyclerView.setAdapter(homeAdapter);
         refreshLayout.setOnRefreshListener(refresh -> {
             currentPage = 1;
             loadData();
@@ -79,20 +84,25 @@ public class HomeFragment extends BaseLazyLoadFragment {
                 dissmissDialog();
                 if (currentPage == 1) {
                     refreshLayout.finishRefresh();
-                    homeFragmentAdapter.notifyData(response.getData());
+                    homeAdapter.refresh(response.getData());
                 } else {
                     refreshLayout.finishLoadMore();
-                    homeFragmentAdapter.updateData(response.getData());
+                    homeAdapter.addData(response.getData());
                 }
             }
 
             @Override
             public void onBefore(Request request, int id) {
                 super.onBefore(request, id);
-                showLoadingDialog();
+                //     showLoadingDialog();
             }
         });
     }
 
-
+    @Override
+    public void onItemClickListner(View v, int position) {
+        List<TestBean.DataBean> data = homeAdapter.getData();
+        Log.i(TAG, data.get(position).toString());
+        ToastUtil.showMessage("您点击的位置是:" + position);
+    }
 }

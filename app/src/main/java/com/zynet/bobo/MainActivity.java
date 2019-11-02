@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-import com.zynet.bobo.adapter.MyFragmentStateAdapter;
+import com.zynet.bobo.adapter.FragmentStateAdapter;
 import com.zynet.bobo.ui.fragment.AboutFragment;
 import com.zynet.bobo.ui.fragment.HomeFragment;
 import com.zynet.bobo.ui.fragment.MyFragment;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         mFragments.add(new MyFragment());
         mFragments.add(new MyFragment());
         viewPager.setOffscreenPageLimit(3);
-        viewPager.setAdapter(new MyFragmentStateAdapter(getSupportFragmentManager(), mFragments));
+        viewPager.setAdapter(new FragmentStateAdapter(getSupportFragmentManager(), mFragments));
 
         mBottomBarLayout.setViewPager(viewPager);
         mBottomBarLayout.setSmoothScroll(true);
