@@ -26,7 +26,6 @@ public class AboutFragment extends BaseLazyLoadFragment {
 
     }
 
-
     @Override
     protected int getContentLayout() {
         return R.layout.fragment_about;
