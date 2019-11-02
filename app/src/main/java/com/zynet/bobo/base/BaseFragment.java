@@ -35,8 +35,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getContentLayout(), container, false);
-        initViews(view);
         ButterKnife.bind(this, view);
+        initViews(view);
         mLoadingDialog = DialogHelper.getLoadingDialog(getActivity());
         return view;
     }
