@@ -3,10 +3,7 @@ package com.zynet.bobo.base;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-
-import androidx.multidex.MultiDex;
 
 import com.zynet.bobo.MainActivity;
 import com.zynet.bobo.utils.SystemUtil;
@@ -57,23 +54,23 @@ public class BaseApplication extends Application {
 
     private void loadMultiDex(Context context) {
         //创建临时文件
-        newTempFile(context);
-
-        //启动另一个进程去加载MultiDex
-        Intent intent = new Intent(context, LoadMultiDexActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-
-        //检查MultiDex是否安装完（安装完会删除临时文件）
-        checkUntilLoadDexSuccess(context);
-
-        //另一个进程以及加载 MultiDex，有缓存了，所以主进程再加载就很快了。
-        //为什么主进程要再加载，因为每个进程都有一个ClassLoader
-        long startTime = System.currentTimeMillis();
-        MultiDex.install(context);
-        Log.d(TAG, "第二次 MultiDex.install 结束，耗时: " + (System.currentTimeMillis() - startTime));
-
-        preNewActivity();
+//        newTempFile(context);
+//
+//        //启动另一个进程去加载MultiDex
+//        Intent intent = new Intent(context, LoadMultiDexActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(intent);
+//
+//        //检查MultiDex是否安装完（安装完会删除临时文件）
+//        checkUntilLoadDexSuccess(context);
+//
+//        //另一个进程以及加载 MultiDex，有缓存了，所以主进程再加载就很快了。
+//        //为什么主进程要再加载，因为每个进程都有一个ClassLoader
+//        long startTime = System.currentTimeMillis();
+//        MultiDex.install(context);
+//        Log.d(TAG, "第二次 MultiDex.install 结束，耗时: " + (System.currentTimeMillis() - startTime));
+//
+//        preNewActivity();
     }
 
     private void preNewActivity() {

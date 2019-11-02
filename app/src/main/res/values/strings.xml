@@ -12,5 +12,56 @@
     <string name="tab_micro">微头条</string>
     <string name="tab_me">我的</string>
 
+    <array name="imags">
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+        <item>
+            https://goss1.cfp.cn/creative/vcg/800/new/ea3aec28bbcf4f13a73a54aa5fda7eaf.jpg?x-oss-process=image/format,jpg/interlace,1
+        </item>
+    </array>
+
 
 </resources>

@@ -59,11 +59,9 @@ public class MainActivity extends AppCompatActivity {
         mFragments.add(new AboutFragment());
         mFragments.add(new MyFragment());
         mFragments.add(new MyFragment());
-        // viewPager.setCurrentItem(2);
-        viewPager.setAdapter(new MyFragmentStateAdapter(getSupportFragmentManager(), mFragments));
-        //  viewPager.setOffscreenPageLimit(3);
-
         viewPager.setOffscreenPageLimit(3);
+        viewPager.setAdapter(new MyFragmentStateAdapter(getSupportFragmentManager(), mFragments));
+
         mBottomBarLayout.setViewPager(viewPager);
         mBottomBarLayout.setSmoothScroll(true);
 
