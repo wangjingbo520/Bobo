@@ -1,5 +1,6 @@
 package com.zynet.bobo.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -50,7 +51,7 @@ public class HomeFragment extends BaseLazyLoadFragment implements BaseRecyclerVi
         refreshLayout.setRefreshHeader(new ClassicsHeader(mContext));
         homeAdapter = new HomeAdapter(R.layout.recy_item);
         homeAdapter.setOnItemChildClickListener(this);
-        View inflate = LayoutInflater.from(mContext).inflate(R.layout.headview, null);
+        @SuppressLint("InflateParams") View inflate = LayoutInflater.from(mContext).inflate(R.layout.headview, null);
         homeAdapter.addHeaderView(inflate);
 
         recyclerView.setAdapter(homeAdapter);

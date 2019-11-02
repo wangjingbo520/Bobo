@@ -22,5 +22,6 @@ public class HomeAdapter extends BaseRecyclerViewAdapter<TestBean.DataBean, Base
     protected void convert(@NonNull BaseViewHolder helper, TestBean.DataBean item) {
         helper.setText(R.id.tvContent, item.toString());
         helper.addOnClickListener(R.id.btnDelete);
+
     }
 }
