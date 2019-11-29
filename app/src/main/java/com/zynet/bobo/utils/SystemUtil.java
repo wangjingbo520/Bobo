@@ -8,7 +8,10 @@ import android.util.Log;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * @author   wjb
+ * describe
+ */
 public class SystemUtil {
 
     public static String getProcessName(Context context) {
