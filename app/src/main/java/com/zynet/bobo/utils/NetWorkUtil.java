@@ -11,7 +11,7 @@ import android.text.TextUtils;
  * @date 2019/10/7 0007
  * describe
  */
-public class NetUtil {
+public class NetWorkUtil {
     public static final String NETWORK_TYPE_WIFI       = "wifi";
     public static final String NETWORK_TYPE_3G         = "eg";
     public static final String NETWORK_TYPE_2G         = "2g";

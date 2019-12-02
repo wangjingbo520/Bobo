@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.JsonParseException;
 import com.zynet.bobo.utils.LogUtil;
-import com.zynet.bobo.utils.NetUtil;
+import com.zynet.bobo.utils.NetWorkUtil;
 import com.zynet.bobo.utils.ToastUtil;
 
 import org.json.JSONException;
@@ -60,7 +60,7 @@ public abstract class ProgressSubscriber<T> implements Observer<T>, ProgressDial
 
     @Override
     public void onSubscribe(Disposable d) {
-        if (!NetUtil.isNetworkAvailable(context)) {
+        if (!NetWorkUtil.isNetworkAvailable(context)) {
             ToastUtil.showMessage(connectMsg);
             return;
         }
